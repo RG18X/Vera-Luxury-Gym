@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Daniel Reed — Conditioning Coach at VÉRA Luxury Fitness Club." />
+  <title>Daniel Reed — Conditioning Coach | VÉRA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <style>
+:root{
+  --bg:#080808;--card:#141414;--text:#f4f1e8;--muted:#9d9d9d;
+  --gold:#c7a66a;--gold-light:#e1c58a;--border:rgba(255,255,255,.09);
+  --container:1220px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--container),calc(100% - 48px));margin:auto}
+
+header{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  background:rgba(8,8,8,.82);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border)
+}
+.nav{height:88px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Manrope",sans-serif;font-size:25px;font-weight:800;letter-spacing:5px}
+.logo small{display:block;font-family:"DM Sans";font-size:7px;letter-spacing:4px;color:var(--gold);text-align:center;margin-top:-2px}
+.back-link{
+  display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(199,166,106,.45);
+  padding:11px 17px;color:var(--gold-light);font-size:10px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;transition:.25s
+}
+.back-link:hover{background:var(--gold);border-color:var(--gold);color:#111}
+
+.hero{
+  min-height:100vh;padding:150px 0 100px;display:flex;align-items:center;
+  background:radial-gradient(circle at 82% 18%,rgba(199,166,106,.12),transparent 28%),
+  linear-gradient(180deg,#0c0c0c 0%,#080808 100%)
+}
+.profile-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:75px;align-items:center}
+.portrait{position:relative}
+.portrait:after{
+  content:"";position:absolute;inset:18px -18px -18px 18px;
+  border:1px solid rgba(199,166,106,.25);pointer-events:none
+}
+.portrait img{position:relative;z-index:1;width:100%;height:650px;object-fit:cover;display:block;filter:grayscale(8%)}
+.portrait-badge{
+  position:absolute;z-index:2;left:24px;bottom:24px;background:var(--gold);color:#111;
+  padding:14px 17px;font-size:10px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;color:var(--gold-light);
+  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px
+}
+.eyebrow:before{content:"";width:32px;height:1px;background:var(--gold)}
+h1{
+  font-family:"Manrope",sans-serif;font-size:clamp(52px,7vw,96px);
+  line-height:.92;letter-spacing:-6px;margin-bottom:14px
+}
+h1 em{font-family:"Playfair Display",serif;font-weight:500;color:var(--gold-light);letter-spacing:-3px}
+.role{color:var(--gold);font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.bio{max-width:650px;color:#bcbcbc;font-size:16px;line-height:1.8;margin-bottom:30px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+.stat{background:#111;border:1px solid var(--border);padding:20px}
+.stat strong{display:block;font-family:"Manrope";font-size:26px;line-height:1.1;margin-bottom:7px}
+.stat span{display:block;color:#777;font-size:9px;letter-spacing:1.1px;text-transform:uppercase}
+.certs{border-top:1px solid var(--border);padding-top:20px;color:#8e8e8e;font-size:12px}
+.certs strong{color:#ddd}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;padding:14px 21px;
+  background:var(--gold);color:#111;border:1px solid var(--gold);font-size:11px;
+  font-weight:800;letter-spacing:.8px;text-transform:uppercase;transition:.25s
+}
+.btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:#eee;border-color:rgba(255,255,255,.2)}
+.btn-outline:hover{color:var(--gold-light);border-color:var(--gold);background:rgba(199,166,106,.06)}
+
+.section{padding:100px 0}
+.dark-section{background:#0d0d0d;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+h2{font-family:"Manrope";font-size:clamp(36px,5vw,62px);line-height:1;letter-spacing:-3px;margin-bottom:22px}
+h2 em{font-family:"Playfair Display";font-weight:500;color:var(--gold-light)}
+.copy{max-width:620px;color:#aaa;font-size:15px;line-height:1.85}
+.expertise{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+.expertise-card{padding:21px;background:var(--card);border:1px solid var(--border);color:#ddd;font-size:13px;transition:.25s}
+.expertise-card:hover{border-color:rgba(199,166,106,.45);transform:translateY(-3px)}
+.philosophy{
+  padding:45px;background:linear-gradient(145deg,rgba(199,166,106,.12),rgba(199,166,106,.02)),#121212;
+  border:1px solid rgba(199,166,106,.22)
+}
+.philosophy p{font-family:"Playfair Display";font-style:italic;font-size:27px;line-height:1.4;color:#eee}
+.achievement-list{list-style:none;border-top:1px solid var(--border)}
+.achievement-list li{padding:17px 0;border-bottom:1px solid var(--border);color:#bdbdbd;font-size:14px}
+.achievement-list li:before{content:"✦";color:var(--gold);margin-right:12px}
+.details-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:30px}
+.detail{background:#111;border:1px solid var(--border);padding:22px}
+.detail-label{display:block;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:8px}
+.detail-value{color:#e5e5e5;font-size:14px}
+.cta{text-align:center;padding:120px 0}
+.cta h2{max-width:850px;margin:0 auto 22px}
+.cta p{max-width:620px;margin:0 auto 30px;color:#888;font-size:14px}
+footer{border-top:1px solid var(--border);padding:26px 0;color:#666;font-size:11px}
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+@media(max-width:900px){
+  .profile-grid,.two-col{grid-template-columns:1fr;gap:50px}
+  .portrait img{height:540px}.hero{padding-top:125px}
+}
+@media(max-width:600px){
+  .container{width:calc(100% - 32px)}.nav{height:74px}.logo{font-size:21px}
+  .back-link{padding:9px 12px;font-size:9px}.portrait img{height:450px}
+  .portrait:after{inset:10px -10px -10px 10px}
+  h1{letter-spacing:-4px}.stats,.expertise,.details-grid{grid-template-columns:1fr}
+  .philosophy{padding:28px}.philosophy p{font-size:22px}
+  .hero-buttons .btn{width:100%}.footer-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo">
+      VÉRA
+      <small>LUXURY FITNESS CLUB</small>
+    </a>
+
+    <a href="index.html#trainers" class="back-link">
+      ← Back to Trainers
+    </a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container profile-grid">
+
+    <div class="portrait">
+      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=90" alt="Daniel Reed — Conditioning Coach">
+      <div class="portrait-badge">Mon–Sat · 4:00 PM–10:00 PM</div>
+    </div>
+
+    <div>
+      <div class="eyebrow">The VÉRA Collective</div>
+
+      <h1>Daniel <em>Reed</em></h1>
+
+      <div class="role">Conditioning Coach</div>
+
+      <p class="bio">Daniel helps members develop the engine behind their performance. His programs combine cardiovascular conditioning, intervals, work-capacity development and recovery-aware progression for stronger everyday performance.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>12+</strong>
+          <span>Years Coaching</span>
+        </div>
+        <div class="stat">
+          <strong>1,050+</strong>
+          <span>Members Coached</span>
+        </div>
+        <div class="stat">
+          <strong>Conditioning</strong>
+          <span>Core Specialty</span>
+        </div>
+      </div>
+
+      <div class="certs">
+        <strong>Certifications:</strong> NSCA · CrossFit Level 2 · Sports Conditioning
+      </div>
+
+      <div class="hero-buttons">
+        <a href="index.html#contact" class="btn">Book a Session →</a>
+        <a href="index.html#trainers" class="btn btn-outline">Meet All Trainers</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+
+    <div>
+      <div class="eyebrow">Training Expertise</div>
+      <h2>Conditioning with <em>purpose.</em></h2>
+
+      <p class="copy">Daniel’s approach is built around improving cardiovascular fitness, work capacity and recovery without sacrificing movement quality. Sessions are structured to challenge the body intelligently and create progress members can actually measure.</p>
+
+      <div class="expertise">
+        <div class="expertise-card">Fat Loss Conditioning</div>
+<div class="expertise-card">HIIT</div>
+<div class="expertise-card">Endurance</div>
+<div class="expertise-card">Work Capacity</div>
+      </div>
+    </div>
+
+    <div class="philosophy">
+      <div class="eyebrow">Coaching Philosophy</div>
+      <p>“Fitness is the ability to do more, recover faster and stay ready. Conditioning should challenge you without compromising quality.”</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section dark-section">
+  <div class="container two-col">
+
+    <div>
+      <div class="eyebrow">Experience & Achievements</div>
+      <h2>Performance under <em>pressure.</em></h2>
+
+      <p class="copy">Daniel brings high energy and structured progression to every conditioning session. His goal is to make hard training feel purposeful, measurable and sustainable.</p>
+
+      <div class="details-grid">
+        <div class="detail"><span class="detail-label">Position</span><span class="detail-value">Conditioning Coach</span></div>
+<div class="detail"><span class="detail-label">Experience</span><span class="detail-value">12+ Years</span></div>
+<div class="detail"><span class="detail-label">Specialty</span><span class="detail-value">Conditioning & Endurance</span></div>
+<div class="detail"><span class="detail-label">Availability</span><span class="detail-value">Mon–Sat · 4PM–10PM</span></div>
+      </div>
+    </div>
+
+    <div>
+      <ul class="achievement-list">
+        <li>Designed conditioning programs for 1,000+ members</li>
+<li>Specialist in interval-based programming</li>
+<li>Combines performance work with recovery planning</li>
+<li>Known for energetic, high-accountability sessions</li>
+<li>Builds scalable programs for beginners through advanced members</li>
+<li>Focuses on cardiovascular efficiency and work capacity</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+
+    <div>
+      <div class="eyebrow">The VÉRA Method</div>
+      <h2>Build your <em>engine.</em></h2>
+      <p class="copy">A premium conditioning session is more than simply getting tired. Daniel uses structured intervals, pacing, work-rest ratios and progressive volume to improve the way your body performs and recovers.</p>
+    </div>
+
+    <div>
+      <ul class="achievement-list">
+        <li>Conditioning assessment</li>
+<li>Personalized interval structure</li>
+<li>Cardiovascular progression</li>
+<li>Pacing and recovery strategy</li>
+<li>Performance tracking</li>
+<li>Regular program adjustments</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="eyebrow">Private Coaching</div>
+    <h2>Train with Daniel and make your next session <em>count.</em></h2>
+    <p>Request a private consultation and the VÉRA membership team will help schedule an introductory conditioning session with Daniel.</p>
+    <a href="index.html#contact" class="btn">Book a Session With Daniel →</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© 2026 VÉRA Fitness Club. All rights reserved.</span>
+    <span>Daniel Reed · Conditioning Coach</span>
+  </div>
+</footer>
+
+</body>
+</html>

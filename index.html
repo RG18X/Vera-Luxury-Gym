@@ -1,0 +1,2585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VÉRA — Luxury Fitness Club. Premium training, elite coaching, recovery and wellness." />
+  <title>VÉRA — Luxury Fitness Club</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080808;
+      --bg2: #101010;
+      --card: #141414;
+      --card2: #191919;
+      --text: #f4f1e8;
+      --muted: #9d9d9d;
+      --gold: #c7a66a;
+      --gold-light: #e1c58a;
+      --border: rgba(255,255,255,.09);
+      --white: #fff;
+      --radius: 22px;
+      --container: 1220px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin: auto;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section {
+      padding: 120px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 60px;
+    }
+
+    .section-heading h2 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -3px;
+      margin-bottom: 20px;
+    }
+
+    .section-heading h2 span {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 600px;
+      font-size: 16px;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: .35s ease;
+    }
+
+    header.scrolled {
+      background: rgba(8,8,8,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Manrope", sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+
+    .logo small {
+      display: block;
+      font-family: "DM Sans", sans-serif;
+      font-size: 7px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-align: center;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #cfcfcf;
+      font-size: 13px;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-cta,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #111;
+      padding: 14px 22px;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      transition: .3s ease;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover,
+    .btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(199,166,106,.16);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(255,255,255,.25);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.08);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.94) 0%, rgba(5,5,5,.65) 45%, rgba(5,5,5,.2) 100%),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2200&q=90") center/cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg), transparent 25%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: 80px;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(52px, 8vw, 108px);
+      line-height: .92;
+      letter-spacing: -6px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-family: "Playfair Display", serif;
+      color: var(--gold-light);
+      font-weight: 500;
+      letter-spacing: -3px;
+    }
+
+    .hero p {
+      color: #c3c3c3;
+      max-width: 570px;
+      font-size: 17px;
+      margin-bottom: 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .hero-bottom {
+      position: absolute;
+      z-index: 3;
+      bottom: 38px;
+      left: 0;
+      width: 100%;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 55px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: "Manrope";
+      font-size: 25px;
+    }
+
+    .hero-stat span {
+      color: #888;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* ================= TICKER ================= */
+
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #0c0c0c;
+      padding: 18px 0;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 24s linear infinite;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-right: 45px;
+      color: #a5a5a5;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      white-space: nowrap;
+    }
+
+    .ticker-item b {
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    @keyframes ticker {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      height: 620px;
+      border-radius: 3px;
+      filter: grayscale(12%);
+    }
+
+    .image-tag {
+      position: absolute;
+      bottom: 24px;
+      right: -25px;
+      background: var(--gold);
+      color: #111;
+      padding: 18px 25px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .about-copy h3 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      font-family: "Playfair Display";
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 30px;
+      margin-top: 30px;
+    }
+
+    /* ================= FEATURES ================= */
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      min-height: 330px;
+      padding: 35px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: .35s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(199,166,106,.45);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: rgba(199,166,106,.08);
+    }
+
+    .feature-number {
+      font-family: "Playfair Display";
+      color: var(--gold);
+      font-size: 19px;
+      margin-bottom: 55px;
+    }
+
+    .feature-icon {
+      font-size: 30px;
+      margin-bottom: 22px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ================= PROGRAMS ================= */
+
+    .programs {
+      background: #0d0d0d;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .program {
+      height: 510px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .program img {
+      height: 100%;
+      transition: .6s;
+      filter: brightness(.62);
+    }
+
+    .program:hover img {
+      transform: scale(1.07);
+      filter: brightness(.78);
+    }
+
+    .program-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(transparent 35%, rgba(0,0,0,.9));
+    }
+
+    .program-tag {
+      color: var(--gold-light);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .program h3 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .program p {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* ================= TRAINERS ================= */
+
+    .trainer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .trainer {
+      overflow: hidden;
+    }
+
+    .trainer-image {
+      height: 390px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .trainer img {
+      height: 100%;
+      transition: .5s;
+      filter: grayscale(100%);
+    }
+
+    .trainer:hover img {
+      transform: scale(1.04);
+      filter: grayscale(0%);
+    }
+
+    .trainer h3 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .trainer span {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ================= MEMBERSHIPS ================= */
+
+    .membership {
+      background: #0d0d0d;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .plan {
+      padding: 40px;
+      background: #121212;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .plan.featured {
+      border-color: var(--gold);
+      transform: translateY(-10px);
+      background:
+        linear-gradient(145deg, rgba(199,166,106,.11), transparent 45%),
+        #151515;
+    }
+
+    .popular {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: var(--gold);
+      color: #111;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 7px 10px;
+    }
+
+    .plan-name {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .price {
+      margin: 20px 0 5px;
+      font-family: "Manrope";
+      font-size: 46px;
+      font-weight: 800;
+    }
+
+    .price span {
+      font-size: 13px;
+      color: #777;
+      font-weight: 400;
+    }
+
+    .plan-desc {
+      color: #888;
+      font-size: 13px;
+      min-height: 45px;
+      margin-bottom: 25px;
+    }
+
+    .plan ul {
+      list-style: none;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .plan li {
+      font-size: 13px;
+      color: #bdbdbd;
+      margin: 13px 0;
+    }
+
+    .plan li::before {
+      content: "✓";
+      color: var(--gold);
+      margin-right: 10px;
+    }
+
+    .plan .btn {
+      width: 100%;
+    }
+
+    /* ================= SCHEDULE ================= */
+
+    .schedule-wrap {
+      border: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 800px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 22px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: var(--gold-light);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: #121212;
+    }
+
+    td {
+      color: #bdbdbd;
+      font-size: 13px;
+    }
+
+    td:first-child {
+      color: white;
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .level {
+      display: inline-block;
+      padding: 5px 8px;
+      border: 1px solid var(--border);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ================= GALLERY ================= */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      grid-template-rows: 280px 280px;
+      gap: 12px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      transition: .5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ================= TESTIMONIAL ================= */
+
+    .testimonial {
+      position: relative;
+      padding: 100px 0;
+      background:
+        linear-gradient(rgba(5,5,5,.8), rgba(5,5,5,.92)),
+        url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2200&q=85") center/cover fixed;
+    }
+
+    .quote {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-family: "Playfair Display";
+      color: var(--gold);
+      font-size: 90px;
+      line-height: .6;
+    }
+
+    .quote blockquote {
+      font-family: "Playfair Display";
+      font-size: clamp(28px, 4vw, 50px);
+      line-height: 1.2;
+      font-style: italic;
+      margin: 30px 0;
+    }
+
+    .quote-author {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* ================= FAQ ================= */
+
+    .faq-grid {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 25px 0;
+      background: none;
+      border: 0;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .faq-question span:last-child {
+      color: var(--gold);
+      font-size: 22px;
+      transition: .3s;
+    }
+
+    .faq.active .faq-question span:last-child {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: .4s ease;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .faq-answer p {
+      padding-bottom: 25px;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact {
+      background: #0d0d0d;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 80px;
+    }
+
+    .contact-info h2 {
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+      max-width: 430px;
+      margin-bottom: 35px;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .detail-icon {
+      color: var(--gold);
+      width: 35px;
+      font-size: 18px;
+    }
+
+    .detail span {
+      color: #777;
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 3px;
+    }
+
+    .detail p {
+      font-size: 14px;
+    }
+
+    .contact-form {
+      background: #131313;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      color: #999;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #0d0d0d;
+      color: white;
+      padding: 14px 15px;
+      outline: none;
+      transition: .25s;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+    }
+
+    /* ================= CTA ================= */
+
+    .final-cta {
+      padding: 130px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: "VÉRA";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 22vw;
+      font-weight: 800;
+      color: rgba(255,255,255,.015);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .final-cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(42px, 7vw, 85px);
+      letter-spacing: -4px;
+      line-height: .98;
+      margin-bottom: 25px;
+    }
+
+    .final-cta h2 em {
+      color: var(--gold-light);
+      font-family: "Playfair Display";
+      font-weight: 500;
+    }
+
+    .final-cta p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: auto auto 30px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .7fr .9fr;
+      gap: 40px;
+      padding-bottom: 55px;
+    }
+
+    .footer-brand p {
+      color: #777;
+      max-width: 310px;
+      font-size: 13px;
+      margin-top: 18px;
+    }
+
+    footer h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin: 10px 0;
+    }
+
+    footer li a {
+      color: #777;
+      font-size: 13px;
+      transition: .25s;
+    }
+
+    footer li a:hover {
+      color: white;
+    }
+
+    .socials {
+      display: flex;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .socials a {
+      width: 35px;
+      height: 35px;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      color: #aaa;
+      transition: .25s;
+    }
+
+    .socials a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 11px;
+    }
+
+    /* ================= WHATSAPP ================= */
+
+    .whatsapp {
+      position: fixed;
+      z-index: 900;
+      right: 24px;
+      bottom: 24px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #25D366;
+      color: white;
+      font-size: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      transition: .3s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.08);
+    }
+
+    /* ================= REVEAL ================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        gap: 17px;
+      }
+
+      .program-grid,
+      .trainer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 32px, var(--container));
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .nav {
+        height: 74px;
+      }
+
+      .menu-btn {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 74px 0 0;
+        background: rgba(8,8,8,.98);
+        backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 35px 24px;
+        transform: translateX(100%);
+        transition: .35s;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+
+      .nav-links a {
+        font-size: 22px;
+      }
+
+      .hero {
+        min-height: 800px;
+        background-position: 65% center;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .hero-bottom {
+        bottom: 25px;
+      }
+
+      .hero-stats {
+        gap: 25px;
+      }
+
+      .hero-stat strong {
+        font-size: 19px;
+      }
+
+      .hero-stat span {
+        font-size: 8px;
+      }
+
+      .feature-grid,
+      .program-grid,
+      .trainer-grid,
+      .plans {
+        grid-template-columns: 1fr;
+      }
+
+      .program {
+        height: 450px;
+      }
+
+      .plan.featured {
+        transform: none;
+      }
+
+      .about-image img {
+        height: 450px;
+      }
+
+      .image-tag {
+        right: 10px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px;
+      }
+
+      .gallery-item:first-child {
+        grid-row: span 2;
+      }
+
+      .contact-form {
+        padding: 24px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .hero-stats {
+        gap: 15px;
+      }
+
+      .hero-stat strong {
+        font-size: 16px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 250px);
+      }
+
+      .gallery-item:first-child {
+        grid-row: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+/* ===== AUTH / GOOGLE LOGIN ===== */
+body.auth-locked{overflow:hidden}
+.auth-overlay{
+  position:fixed; inset:0; z-index:99999;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  background:rgba(0,0,0,.72); backdrop-filter:blur(16px);
+}
+.auth-card{
+  width:min(430px,100%); background:linear-gradient(145deg,#171717,#0d0d0d);
+  border:1px solid rgba(199,166,106,.28); padding:40px 32px 30px;
+  border-radius:24px; text-align:center; box-shadow:0 30px 90px rgba(0,0,0,.7);
+  animation:authPop .45s ease both;
+}
+@keyframes authPop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.auth-mark{
+  width:64px;height:64px;margin:0 auto 18px;border-radius:18px;
+  background:var(--gold);color:#111;display:grid;place-items:center;
+  font:800 28px Manrope, sans-serif;letter-spacing:2px;
+}
+.auth-card h2{font:800 36px Manrope,sans-serif;letter-spacing:-1.5px;margin-bottom:8px}
+.auth-card h2 em{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold-light);font-weight:500}
+.auth-card p{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:24px}
+.google-login-btn{
+  width:100%;min-height:54px;border:1px solid #dadce0;border-radius:12px;background:#fff;
+  color:#202124;display:flex;align-items:center;justify-content:center;gap:12px;
+  cursor:pointer;font-weight:700;transition:.25s;
+}
+.google-login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,255,255,.1)}
+.google-icon{width:21px;height:21px}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#666;font-size:12px}
+.auth-divider:before,.auth-divider:after{content:"";height:1px;background:var(--border);flex:1}
+.guest-login-btn{
+  width:100%;border:1px solid rgba(255,255,255,.12);background:transparent;color:#cfcfcf;
+  padding:13px 16px;border-radius:12px;cursor:pointer;font-weight:600;transition:.25s;
+}
+.guest-login-btn:hover{border-color:var(--gold);color:var(--gold-light)}
+.auth-note{margin-top:16px!important;margin-bottom:0!important;font-size:10px!important;color:#666!important}
+.header-auth{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:1px solid rgba(199,166,106,.65);color:var(--gold-light);background:rgba(0,0,0,.2);
+  padding:11px 18px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
+  cursor:pointer;transition:.25s;margin-left:8px;
+}
+.header-auth:hover{background:var(--gold);color:#111}
+.header-auth.logged-in{border-color:rgba(255,255,255,.15);color:#ddd;background:#141414}
+@media(max-width:720px){
+  .header-auth{padding:9px 13px;font-size:10px}
+  .auth-card{padding:32px 22px 26px}
+  .auth-card h2{font-size:31px}
+}
+
+</style>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header id="header">
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        VÉRA
+        <small>LUXURY FITNESS CLUB</small>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#programs">Programs</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#membership">Membership</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#membership" class="nav-cta">Join Véra</a>
+      <button class="header-auth" id="headerLoginBtn" type="button" aria-haspopup="dialog">Log in</button>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        ☰
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+
+
+  <!-- ================= AUTH / GOOGLE LOGIN ================= -->
+  <div class="auth-overlay" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-card">
+      <div class="auth-mark">V</div>
+      <h2 id="authTitle">Welcome to <em>VÉRA</em></h2>
+      <p>Sign in to continue your premium fitness experience.</p>
+      <div class="google-login-btn" id="googleLoginBtn" aria-label="Continue with Google"></div>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <button class="guest-login-btn" id="guestLoginBtn" type="button">Continue as Guest</button>
+      <p class="auth-note">You can sign in anytime later from the top-right Login button.</p>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="container">
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">Private Fitness Club</div>
+
+          <h1>
+            Train with<br>
+            <em>intention.</em>
+          </h1>
+
+          <p>
+            A private luxury fitness experience designed for people
+            who expect more from their body, their performance and
+            themselves.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#membership" class="btn">Explore Membership →</a>
+            <a href="#about" class="btn btn-outline">Discover Véra</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="container">
+          <div class="hero-stats">
+
+            <div class="hero-stat">
+              <strong>12K+</strong>
+              <span>Members Transformed</span>
+            </div>
+
+            <div class="hero-stat">
+              <strong>28</strong>
+              <span>Elite Coaches</span>
+            </div>
+
+            <div class="hero-stat">
+              <strong>24/7</strong>
+              <span>Club Access</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ================= TICKER ================= -->
+
+    <div class="ticker">
+      <div class="ticker-track">
+
+        <div class="ticker-item">Strength <b>✦</b></div>
+        <div class="ticker-item">Performance <b>✦</b></div>
+        <div class="ticker-item">Recovery <b>✦</b></div>
+        <div class="ticker-item">Wellness <b>✦</b></div>
+        <div class="ticker-item">Nutrition <b>✦</b></div>
+        <div class="ticker-item">Mindset <b>✦</b></div>
+
+        <div class="ticker-item">Strength <b>✦</b></div>
+        <div class="ticker-item">Performance <b>✦</b></div>
+        <div class="ticker-item">Recovery <b>✦</b></div>
+        <div class="ticker-item">Wellness <b>✦</b></div>
+        <div class="ticker-item">Nutrition <b>✦</b></div>
+        <div class="ticker-item">Mindset <b>✦</b></div>
+
+      </div>
+    </div>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="section" id="about">
+
+      <div class="container about-grid">
+
+        <div class="about-image reveal">
+          <img
+            src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=85"
+            alt="Luxury gym interior"
+          >
+          <div class="image-tag">Est. 2012 · Mumbai</div>
+        </div>
+
+        <div class="about-copy reveal">
+
+          <div class="eyebrow">The Véra Standard</div>
+
+          <h3>
+            Not a gym.<br>
+            A <span class="gold">standard.</span>
+          </h3>
+
+          <p>
+            VÉRA was created around a simple belief: training should
+            feel as intentional as everything else in your life.
+          </p>
+
+          <p>
+            From world-class equipment and private coaching to
+            recovery, nutrition and wellness, every detail has been
+            engineered around one goal — helping you become your
+            strongest self.
+          </p>
+
+          <div class="signature">Train beautifully.</div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FACILITIES ================= -->
+
+    <section class="section" id="facilities">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">The Club</div>
+          <h2>
+            Everything you need.<br>
+            <span>Nothing you don't.</span>
+          </h2>
+          <p>
+            An uncompromising environment where premium equipment,
+            expert guidance and recovery come together.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card reveal">
+            <div class="feature-number">01</div>
+            <div class="feature-icon">◈</div>
+            <h3>Elite Equipment</h3>
+            <p>
+              Curated strength and conditioning equipment from the
+              world's leading performance brands.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-number">02</div>
+            <div class="feature-icon">◎</div>
+            <h3>Recovery Lounge</h3>
+            <p>
+              Infrared sauna, compression therapy, mobility zones
+              and guided recovery protocols.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-number">03</div>
+            <div class="feature-icon">◇</div>
+            <h3>Private Training</h3>
+            <p>
+              One-to-one coaching built around your body, lifestyle,
+              goals and performance.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-number">04</div>
+            <div class="feature-icon">△</div>
+            <h3>Movement Studio</h3>
+            <p>
+              Yoga, mobility, Pilates and functional movement in
+              intimate small-group sessions.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-number">05</div>
+            <div class="feature-icon">✦</div>
+            <h3>Nutrition Bar</h3>
+            <p>
+              Protein-focused meals, specialty coffee, hydration
+              and personalized nutrition support.
+            </p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="feature-number">06</div>
+            <div class="feature-icon">⌁</div>
+            <h3>24/7 Access</h3>
+            <p>
+              Train on your schedule with secure biometric access
+              available around the clock.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROGRAMS ================= -->
+
+    <section class="section programs" id="programs">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">Signature Programs</div>
+          <h2>Train for <span>more.</span></h2>
+          <p>
+            Structured programs designed around performance,
+            aesthetics, longevity and complete wellbeing.
+          </p>
+        </div>
+
+        <div class="program-grid">
+
+          <article class="program reveal">
+            <img
+              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=85"
+              alt="Strength training"
+            >
+            <div class="program-overlay">
+              <div class="program-tag">01 · Performance</div>
+              <h3>Strength Lab</h3>
+              <p>Build strength. Move better. Perform longer.</p>
+            </div>
+          </article>
+
+          <article class="program reveal">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85"
+              alt="Conditioning training"
+            >
+            <div class="program-overlay">
+              <div class="program-tag">02 · Conditioning</div>
+              <h3>Conditioning</h3>
+              <p>High-performance cardiovascular conditioning.</p>
+            </div>
+          </article>
+
+          <article class="program reveal">
+            <img
+              src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=900&q=85"
+              alt="Yoga class"
+            >
+            <div class="program-overlay">
+              <div class="program-tag">03 · Mobility</div>
+              <h3>Move Well</h3>
+              <p>Mobility, Pilates and functional movement.</p>
+            </div>
+          </article>
+
+          <article class="program reveal">
+            <img
+              src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=900&q=85"
+              alt="Personal training"
+            >
+            <div class="program-overlay">
+              <div class="program-tag">04 · Personal</div>
+              <h3>1:1 Coaching</h3>
+              <p>A completely personalized training experience.</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= TRAINERS ================= -->
+
+    <section class="section" id="trainers">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">The Collective</div>
+          <h2>Meet your <span>coaches.</span></h2>
+          <p>
+            Experienced coaches who understand that every body
+            requires a different approach.
+          </p>
+        </div>
+
+        <div class="trainer-grid">
+
+        <a href="Alex.html" class="trainer-link">
+  <article class="trainer reveal">
+    <div class="trainer-image">
+      <img
+        src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=800&q=85"
+        alt="Alex Morgan"
+      >
+    </div>
+
+    <h3>Alex Morgan</h3>
+    <span>Performance Director</span>
+  </article>
+</a>
+
+        <a href="trainer-maya.html" class="trainer-link">
+  <article class="trainer reveal">
+    <div class="trainer-image">
+      <img
+        src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=85"
+        alt="Maya Kapoor"
+      >
+    </div>
+    <h3>Maya Kapoor</h3>
+    <span>Strength Coach</span>
+  </article>
+</a>
+          <a href="daniel.html" class="trainer-link"> 
+  <article class="trainer reveal"> 
+
+    <div class="trainer-image">
+      <img
+        src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=85"
+        alt="Daniel Reed"
+      >
+    </div>
+
+    <h3>Daniel Reed</h3> 
+    <span>Conditioning Coach</span> 
+
+  </article> 
+</a>
+
+        <a href="sofia.html" class="trainer-link"> 
+  <article class="trainer reveal"> 
+
+    <div class="trainer-image">
+      <img
+        src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=800&q=85"
+        alt="Sofia Williams"
+      >
+    </div>
+
+    <h3>Sofia Williams</h3> 
+    <span>Movement Specialist</span> 
+
+  </article> 
+</a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MEMBERSHIP ================= -->
+
+    <section class="section membership" id="membership">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">Membership</div>
+          <h2>
+            Choose your<br>
+            <span>standard.</span>
+          </h2>
+          <p>
+            Memberships designed to give you access to the level of
+            training and service that fits your lifestyle.
+          </p>
+        </div>
+
+        <div class="plans">
+
+          <article class="plan reveal">
+            <div class="plan-name">Essential</div>
+
+            <div class="price">
+              ₹4,999 <span>/ month</span>
+            </div>
+
+            <div class="plan-desc">
+              Everything you need to build a consistent training habit.
+            </div>
+
+            <ul>
+              <li>24/7 Club Access</li>
+              <li>Full Equipment Access</li>
+              <li>Locker Facilities</li>
+              <li>Group Classes</li>
+              <li>Fitness Assessment</li>
+            </ul>
+
+            <button class="btn btn-outline select-plan" data-plan="Essential">
+              Choose Essential
+            </button>
+          </article>
+
+
+          <article class="plan featured reveal">
+
+            <div class="popular">Most Popular</div>
+
+            <div class="plan-name">Performance</div>
+
+            <div class="price">
+              ₹8,999 <span>/ month</span>
+            </div>
+
+            <div class="plan-desc">
+              For members who want structured progress and expert guidance.
+            </div>
+
+            <ul>
+              <li>Everything in Essential</li>
+              <li>4 Personal Training Sessions</li>
+              <li>Recovery Lounge Access</li>
+              <li>Nutrition Consultation</li>
+              <li>Monthly Progress Review</li>
+            </ul>
+
+            <button class="btn select-plan" data-plan="Performance">
+              Choose Performance
+            </button>
+
+          </article>
+
+
+          <article class="plan reveal">
+
+            <div class="plan-name">Black</div>
+
+            <div class="price">
+              ₹16,999 <span>/ month</span>
+            </div>
+
+            <div class="plan-desc">
+              The complete VÉRA experience for serious performance.
+            </div>
+
+            <ul>
+              <li>Everything in Performance</li>
+              <li>12 Personal Training Sessions</li>
+              <li>Unlimited Recovery</li>
+              <li>Dedicated Coach</li>
+              <li>Priority Club Services</li>
+            </ul>
+
+            <button class="btn btn-outline select-plan" data-plan="Black">
+              Choose Black
+            </button>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SCHEDULE ================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">Weekly Schedule</div>
+          <h2>Find your <span>flow.</span></h2>
+        </div>
+
+        <div class="schedule-wrap reveal">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Coach</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th>Level</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Strength Lab</td>
+                <td>Alex Morgan</td>
+                <td>06:30 AM</td>
+                <td>60 min</td>
+                <td><span class="level">Advanced</span></td>
+              </tr>
+
+              <tr>
+                <td>Power Conditioning</td>
+                <td>Daniel Reed</td>
+                <td>08:00 AM</td>
+                <td>45 min</td>
+                <td><span class="level">All Levels</span></td>
+              </tr>
+
+              <tr>
+                <td>Véra Flow</td>
+                <td>Sofia Williams</td>
+                <td>10:30 AM</td>
+                <td>60 min</td>
+                <td><span class="level">Beginner</span></td>
+              </tr>
+
+              <tr>
+                <td>Hypertrophy</td>
+                <td>Maya Kapoor</td>
+                <td>06:00 PM</td>
+                <td>60 min</td>
+                <td><span class="level">Intermediate</span></td>
+              </tr>
+
+              <tr>
+                <td>Mobility Reset</td>
+                <td>Sofia Williams</td>
+                <td>07:30 PM</td>
+                <td>45 min</td>
+                <td><span class="level">All Levels</span></td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= GALLERY ================= -->
+
+    <section class="section" id="gallery">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">Inside Véra</div>
+          <h2>Built to <span>inspire.</span></h2>
+        </div>
+
+        <div class="gallery-grid">
+
+          <div class="gallery-item reveal">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85"
+              alt="Véra gym floor"
+            >
+          </div>
+
+          <div class="gallery-item reveal">
+            <img
+              src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=900&q=85"
+              alt="Gym interior"
+            >
+          </div>
+
+          <div class="gallery-item reveal">
+            <img
+              src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=85"
+              alt="Training"
+            >
+          </div>
+
+          <div class="gallery-item reveal">
+            <img
+              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=85"
+              alt="Weight training"
+            >
+          </div>
+
+          <div class="gallery-item reveal">
+            <img
+              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85"
+              alt="Fitness training"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= TESTIMONIAL ================= -->
+
+    <section class="testimonial">
+
+      <div class="container">
+
+        <div class="quote reveal">
+
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            VÉRA completely changed the way I think about training.
+            It feels less like going to the gym and more like investing
+            in myself.
+          </blockquote>
+
+          <div class="quote-author">
+            — Arjun Mehta · VÉRA Black Member
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FAQ ================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="eyebrow">Questions</div>
+          <h2>Good to <span>know.</span></h2>
+        </div>
+
+        <div class="faq-grid">
+
+          <div class="faq reveal">
+            <button class="faq-question">
+              <span>Do I need a membership to visit VÉRA?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We offer complimentary private tours and discovery
+                sessions for prospective members. Book one through
+                the enquiry form below.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq reveal">
+            <button class="faq-question">
+              <span>Do you offer personal training?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. Our coaches create completely personalized
+                programs based on your goals, training history,
+                lifestyle and schedule.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq reveal">
+            <button class="faq-question">
+              <span>Can beginners join?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Absolutely. Every member begins with an assessment
+                so we can recommend the appropriate training level
+                and programs.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq reveal">
+            <button class="faq-question">
+              <span>What are your opening hours?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                VÉRA members have 24/7 secure access to the main
+                training floor. Staffed hours are 6:00 AM to 10:00 PM.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq reveal">
+            <button class="faq-question">
+              <span>Do you provide nutrition guidance?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. Performance and Black members receive nutrition
+                consultations, while additional consultations are
+                available to all members.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="section contact" id="contact">
+
+      <div class="container contact-grid">
+
+        <div class="contact-info reveal">
+
+          <div class="eyebrow">Start Your Journey</div>
+
+          <h2>
+            Let's make<br>
+            <span class="gold">strong</span> happen.
+          </h2>
+
+          <p>
+            Tell us a little about yourself and we'll arrange a
+            private tour of the club with one of our membership
+            specialists.
+          </p>
+
+          <div class="contact-details">
+
+            <div class="detail">
+              <div class="detail-icon">⌖</div>
+              <div>
+                <span>Club Address</span>
+                <p>42 Ocean Drive, Bandra West, Mumbai</p>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-icon">◷</div>
+              <div>
+                <span>Club Hours</span>
+                <p>Members · 24/7 &nbsp; | &nbsp; Staff · 6AM–10PM</p>
+              </div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-icon">✆</div>
+              <div>
+                <span>Call</span>
+                <p>+91 98765 43210</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <form class="contact-form reveal" id="contactForm">
+
+          <div class="form-row">
+
+            <div class="field">
+              <label>First Name</label>
+              <input type="text" name="firstName" placeholder="Your first name" required>
+            </div>
+
+            <div class="field">
+              <label>Last Name</label>
+              <input type="text" name="lastName" placeholder="Your last name" required>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="field">
+              <label>Phone</label>
+              <input type="tel" name="phone" placeholder="+91">
+            </div>
+
+          </div>
+
+          <div class="field">
+            <label>Interested In</label>
+            <select name="interest">
+              <option>Private Tour</option>
+              <option>Essential Membership</option>
+              <option>Performance Membership</option>
+              <option>Black Membership</option>
+              <option>Personal Training</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell us about your goals..."></textarea>
+          </div>
+
+          <button class="btn" type="submit">
+            Request Private Tour →
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FINAL CTA ================= -->
+
+    <section class="final-cta">
+
+      <div class="container final-cta-content reveal">
+
+        <div class="eyebrow">Your next chapter</div>
+
+        <h2>
+          Become your<br>
+          <em>strongest self.</em>
+        </h2>
+
+        <p>
+          Membership is limited to preserve the VÉRA experience.
+          Take the first step today.
+        </p>
+
+        <a href="#contact" class="btn">
+          Begin Your Journey →
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <a href="#home" class="logo">
+            VÉRA
+            <small>LUXURY FITNESS CLUB</small>
+          </a>
+
+          <p>
+            A private fitness club for people who believe that
+            excellence is built — one session at a time.
+          </p>
+
+          <div class="socials">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Youtube">YT</a>
+            <a href="#" aria-label="LinkedIn">IN</a>
+          </div>
+
+        </div>
+
+
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#facilities">Facilities</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#trainers">Trainers</a></li>
+          </ul>
+        </div>
+
+
+        <div>
+          <h4>Membership</h4>
+          <ul>
+            <li><a href="#membership">Essential</a></li>
+            <li><a href="#membership">Performance</a></li>
+            <li><a href="#membership">Black</a></li>
+            <li><a href="#contact">Private Tour</a></li>
+          </ul>
+        </div>
+
+
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:hello@verafitness.com">hello@verafitness.com</a></li>
+            <li><a href="#contact">Bandra West, Mumbai</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+        <span>© 2026 VÉRA Fitness Club. All rights reserved.</span>
+        <span>Privacy · Terms</span>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= WHATSAPP ================= -->
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/919876543210?text=Hi%20V%C3%89RA%2C%20I%27d%20like%20to%20know%20more%20about%20membership."
+    target="_blank"
+    aria-label="Chat on WhatsApp"
+  >
+    ☎
+  </a>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    /* Header background */
+
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+
+    /* Mobile menu */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      document.body.classList.toggle("menu-open");
+
+      menuBtn.textContent =
+        navLinks.classList.contains("open") ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+
+    /* Scroll reveal */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+
+    /* FAQ accordion */
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const faq = button.parentElement;
+        const answer = faq.querySelector(".faq-answer");
+
+        document.querySelectorAll(".faq").forEach(item => {
+          if (item !== faq) {
+            item.classList.remove("active");
+            item.querySelector(".faq-answer").style.maxHeight = null;
+          }
+        });
+
+        faq.classList.toggle("active");
+
+        if (faq.classList.contains("active")) {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+          answer.style.maxHeight = null;
+        }
+
+      });
+
+    });
+
+
+    /* Membership buttons */
+
+    document.querySelectorAll(".select-plan").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const plan = button.dataset.plan;
+
+        const interest = document.querySelector(
+          'select[name="interest"]'
+        );
+
+        interest.value = plan + " Membership";
+
+        document.querySelector("#contact").scrollIntoView({
+          behavior: "smooth"
+        });
+
+      });
+
+    });
+
+
+    /* Contact form */
+
+    const contactForm = document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", event => {
+
+      event.preventDefault();
+
+      const button = contactForm.querySelector("button");
+
+      button.textContent = "Request Received ✓";
+      button.style.background = "#d7b77a";
+
+      setTimeout(() => {
+        button.textContent = "Request Private Tour →";
+      }, 3500);
+
+      contactForm.reset();
+
+    });
+
+
+    /* Active navigation */
+
+    const sections = document.querySelectorAll("section[id]");
+
+    const navObserver = new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            document.querySelectorAll(".nav-links a").forEach(link => {
+              link.style.color = "";
+            });
+
+            const active = document.querySelector(
+              `.nav-links a[href="#${entry.target.id}"]`
+            );
+
+            if (active) {
+              active.style.color = "var(--gold-light)";
+            }
+
+          }
+
+        });
+
+      },
+      {
+        rootMargin: "-30% 0px -60% 0px"
+      }
+    );
+
+    sections.forEach(section => navObserver.observe(section));
+
+
+    /* ================= AUTH / LOGIN ================= */
+    (function(){
+
+      const overlay = document.getElementById("authOverlay");
+      const googleBtn = document.getElementById("googleLoginBtn");
+      const guestBtn = document.getElementById("guestLoginBtn");
+      const headerLoginBtn = document.getElementById("headerLoginBtn");
+
+      const GOOGLE_CLIENT_ID =
+        "1005554896687-9n16ig681tlve8rtotct4acgjpl8bbpr.apps.googleusercontent.com";
+
+      function openAuth(){
+        overlay.style.display = "flex";
+        document.body.classList.add("auth-locked");
+        renderGoogleButton();
+      }
+
+      function closeAuth(){
+        overlay.style.display = "none";
+        document.body.classList.remove("auth-locked");
+      }
+
+      function guestMode(){
+        sessionStorage.setItem("veraGuest", "1");
+        closeAuth();
+        headerLoginBtn.textContent = "Log in";
+        headerLoginBtn.classList.remove("logged-in");
+      }
+
+      window.handleGoogleCredential = function(response){
+
+        console.log("Google login successful");
+
+        /*
+          response.credential is the Google ID token.
+
+          For production, verify this token on your backend before
+          trusting the user's identity or creating a permanent session.
+        */
+
+        console.log("Google credential received:", response.credential);
+
+        sessionStorage.removeItem("veraGuest");
+        closeAuth();
+
+        headerLoginBtn.textContent = "✓ Account";
+        headerLoginBtn.classList.add("logged-in");
+      };
+
+      function renderGoogleButton(){
+
+        if(
+          !window.google ||
+          !window.google.accounts ||
+          !window.google.accounts.id ||
+          !googleBtn
+        ){
+          return;
+        }
+
+        // Avoid rendering the same GIS button repeatedly.
+        googleBtn.innerHTML = "";
+
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleGoogleCredential,
+          auto_select: false,
+          cancel_on_tap_outside: true
+        });
+
+        google.accounts.id.renderButton(
+          googleBtn,
+          {
+            theme: "outline",
+            size: "large",
+            width: 360,
+            text: "continue_with",
+            shape: "rectangular",
+            logo_alignment: "left"
+          }
+        );
+      }
+
+      // A previous Guest choice should keep the modal closed for this tab.
+      if(sessionStorage.getItem("veraGuest") === "1"){
+        closeAuth();
+      }else{
+        openAuth();
+      }
+
+      guestBtn.addEventListener("click", guestMode);
+
+      headerLoginBtn.addEventListener("click", function(){
+        openAuth();
+      });
+
+      // GIS is loaded asynchronously.
+      window.addEventListener("load", function(){
+        renderGoogleButton();
+      });
+
+    })();
+
+  </script>
+
+</body>
+</html>
