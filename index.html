@@ -1301,6 +1301,12 @@
     }
     .guest-login-btn:hover{border-color:var(--gold);color:var(--gold-light)}
     .auth-note{margin-top:16px!important;margin-bottom:0!important;font-size:10px!important;color:#666!important}
+    .admin-trigger{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(199,166,106,.45);color:var(--gold-light);background:transparent;padding:10px 14px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;cursor:pointer;transition:.25s;margin-left:8px;white-space:nowrap}
+    .admin-trigger:hover{background:rgba(199,166,106,.12);border-color:var(--gold)}
+    .admin-modal-btn{width:100%;margin-top:10px;border:1px solid rgba(199,166,106,.32);background:rgba(199,166,106,.05);color:var(--gold-light);padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;transition:.25s;text-transform:uppercase;font-size:10px;letter-spacing:1px}
+    .admin-modal-btn:hover{background:rgba(199,166,106,.12);border-color:var(--gold)}
+    .admin-field{text-align:left;margin-bottom:14px}.admin-field label{display:block;color:#999;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}.admin-field input{width:100%;border:1px solid var(--border);background:#0d0d0d;color:white;padding:14px 15px;outline:none;border-radius:10px}.admin-field input:focus{border-color:var(--gold)}
+    .admin-error{min-height:20px!important;margin:2px 0 10px!important;color:#e58c8c!important;font-size:12px!important}
     .header-auth{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       border:1px solid rgba(199,166,106,.65);color:var(--gold-light);background:rgba(0,0,0,.2);
@@ -1355,6 +1361,7 @@
       color:var(--gold-light);
     }
     @media(max-width:720px){
+      .admin-trigger{padding:9px 11px;font-size:9px}
       .header-auth{padding:9px 13px;font-size:10px}
       .auth-card{padding:32px 22px 26px}
       .auth-card h2{font-size:31px}
@@ -1391,6 +1398,8 @@
 
       <a href="#membership" class="nav-cta">Join Véra</a>
 
+      <button class="admin-trigger" id="headerAdminBtn" type="button">Admin Login</button>
+
       <div style="position:relative;">
         <button class="header-auth" id="headerLoginBtn" type="button" aria-haspopup="dialog" aria-expanded="false">Log in</button>
 
@@ -1425,7 +1434,24 @@
       <div class="auth-divider"><span>or</span></div>
 
       <button class="guest-login-btn" id="guestLoginBtn" type="button">Continue as Guest</button>
+      <button class="admin-modal-btn" id="adminModalBtn" type="button">Admin Login</button>
       <p class="auth-note">You can sign in anytime later from the top-right Login button.</p>
+    </div>
+  </div>
+
+  <!-- ================= ADMIN LOGIN ================= -->
+  <div class="auth-overlay" id="adminOverlay" role="dialog" aria-modal="true" aria-labelledby="adminTitle" style="display:none;">
+    <div class="auth-card">
+      <div class="auth-mark">V</div>
+      <h2 id="adminTitle">VÉRA <em>Admin</em></h2>
+      <p>Private access for the VÉRA administrator.</p>
+      <form id="adminLoginForm" novalidate>
+        <div class="admin-field"><label for="adminEmail">Admin Email</label><input id="adminEmail" type="email" value="akash917083@gmail.com" autocomplete="username" required></div>
+        <div class="admin-field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" placeholder="Enter your admin password" autocomplete="current-password" required></div>
+        <p class="admin-error" id="adminError" aria-live="polite"></p>
+        <button class="btn" id="adminSubmitBtn" type="submit" style="width:100%;">Login to Dashboard →</button>
+      </form>
+      <button class="guest-login-btn" id="adminBackBtn" type="button" style="margin-top:10px;">Back to Login</button>
     </div>
   </div>
 
@@ -2562,6 +2588,8 @@
       const overlay = document.getElementById("authOverlay");
       const googleBtn = document.getElementById("googleLoginBtn");
       const guestBtn = document.getElementById("guestLoginBtn");
+      const adminModalBtn = document.getElementById("adminModalBtn");
+      const headerAdminBtn = document.getElementById("headerAdminBtn");
       const headerLoginBtn = document.getElementById("headerLoginBtn");
       const logoutMenu = document.getElementById("logoutMenu");
       const logoutBtn = document.getElementById("logoutBtn");
@@ -2602,6 +2630,41 @@
 
         overlay.style.display = "none";
         document.body.classList.remove("auth-locked");
+      }
+
+      function openAdminLogin(){
+        if(overlay) overlay.style.display="none";
+        if(adminOverlay) adminOverlay.style.display="flex";
+        document.body.classList.add("auth-locked");
+        if(adminError) adminError.textContent="";
+      }
+
+      function closeAdminLogin(){
+        if(adminOverlay) adminOverlay.style.display="none";
+        document.body.classList.remove("auth-locked");
+      }
+
+      async function adminLogin(){
+        if(!supabase){ if(adminError) adminError.textContent="Supabase is not configured."; return; }
+        const email=(adminEmailInput?.value||"").trim().toLowerCase();
+        const password=adminPasswordInput?.value||"";
+        if(email!==ADMIN_EMAIL.toLowerCase()){ if(adminError) adminError.textContent="Use the authorized admin email."; return; }
+        if(!password){ if(adminError) adminError.textContent="Enter your admin password."; return; }
+        if(adminSubmitBtn){adminSubmitBtn.disabled=true;adminSubmitBtn.textContent="Signing in...";}
+        const {data,error}=await supabase.auth.signInWithPassword({email,password});
+        if(error||!data?.user){
+          if(adminError) adminError.textContent=error?.message||"Admin login failed.";
+          if(adminSubmitBtn){adminSubmitBtn.disabled=false;adminSubmitBtn.textContent="Login to Dashboard →";}
+          return;
+        }
+        if((data.user.email||"").toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
+          await supabase.auth.signOut();
+          if(adminError) adminError.textContent="This account is not authorized for admin access.";
+          if(adminSubmitBtn){adminSubmitBtn.disabled=false;adminSubmitBtn.textContent="Login to Dashboard →";}
+          return;
+        }
+        closeAdminLogin();
+        window.location.href="admin.html";
       }
 
       function openConsent(){
@@ -2874,6 +2937,11 @@
       if(logoutBtn){
         logoutBtn.addEventListener("click", logout);
       }
+
+      if(adminModalBtn){ adminModalBtn.addEventListener("click", openAdminLogin); }
+      if(headerAdminBtn){ headerAdminBtn.addEventListener("click", openAdminLogin); }
+      if(adminBackBtn){ adminBackBtn.addEventListener("click", () => { closeAdminLogin(); openAuth(); }); }
+      if(adminLoginForm){ adminLoginForm.addEventListener("submit", e => { e.preventDefault(); adminLogin(); }); }
 
       if(saveConsentBtn){
         saveConsentBtn.addEventListener("click", () => {
