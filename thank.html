@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Thank You | VÉRA — Luxury Fitness Club</title>
+
+  <meta
+    name="description"
+    content="Thank you for contacting VÉRA Luxury Fitness Club. Your enquiry has been received."
+  >
+
+  <meta name="theme-color" content="#090909">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --bg: #090909;
+      --bg-soft: #101010;
+      --card: #121212;
+      --card-soft: #171717;
+
+      --gold: #c7a76a;
+      --gold-light: #e0c58c;
+      --gold-dark: #9e7e40;
+
+      --white: #f5f2eb;
+      --text: #d7d2c8;
+      --muted: #8c877e;
+      --border: rgba(255,255,255,0.09);
+
+      --success: #bca064;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(
+          circle at 50% 15%,
+          rgba(199, 167, 106, 0.08),
+          transparent 32%
+        ),
+        linear-gradient(
+          180deg,
+          #090909 0%,
+          #0c0c0c 55%,
+          #080808 100%
+        );
+
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================================
+       BACKGROUND DETAILS
+    ========================================= */
+
+    .bg-glow {
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(199, 167, 106, 0.08),
+        rgba(199, 167, 106, 0) 70%
+      );
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(10px);
+    }
+
+    .glow-one {
+      top: -220px;
+      left: -180px;
+    }
+
+    .glow-two {
+      right: -220px;
+      bottom: -220px;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.025;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 92px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 6vw;
+
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 20;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--gold);
+
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+
+      font-size: 18px;
+    }
+
+    .logo-text {
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+    }
+
+    .logo-text span {
+      color: var(--gold);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .header-line {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* =========================================
+       MAIN
+    ========================================= */
+
+    main {
+      min-height: calc(100vh - 92px);
+      padding: 150px 20px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thank-wrapper {
+      width: min(900px, 100%);
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 14px;
+
+      margin-bottom: 22px;
+
+      color: var(--gold);
+
+      font-family: "Manrope", sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .success-icon {
+      width: 92px;
+      height: 92px;
+
+      margin: 0 auto 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(199, 167, 106, 0.38);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(199, 167, 106, 0.14),
+          rgba(199, 167, 106, 0.02) 65%
+        );
+
+      position: relative;
+
+      animation: appear 0.7s ease forwards;
+    }
+
+    .success-icon::before {
+      content: "";
+
+      position: absolute;
+      inset: -8px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(199, 167, 106, 0.10);
+    }
+
+    .check {
+      width: 36px;
+      height: 20px;
+
+      border-left: 2px solid var(--gold-light);
+      border-bottom: 2px solid var(--gold-light);
+
+      transform: rotate(-45deg)
+        translateY(-3px);
+
+      animation: checkDraw 0.65s 0.35s ease forwards;
+
+      opacity: 0;
+    }
+
+    h1 {
+      text-align: center;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(52px, 8vw, 96px);
+
+      line-height: 0.95;
+
+      font-weight: 400;
+
+      letter-spacing: -0.03em;
+
+      color: var(--white);
+
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .intro {
+      width: min(660px, 100%);
+      margin: 0 auto;
+
+      text-align: center;
+
+      font-size: 17px;
+      line-height: 1.8;
+
+      color: var(--muted);
+    }
+
+    .intro strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* =========================================
+       CONFIRMATION CARD
+    ========================================= */
+
+    .confirmation-card {
+      margin-top: 55px;
+
+      border: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+
+      padding: 42px;
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    .confirmation-card::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+
+      opacity: 0.65;
+    }
+
+    .confirmation-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding-bottom: 28px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .confirmation-title {
+      font-family: "Manrope", sans-serif;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .confirmation-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      color: var(--gold-light);
+
+      font-size: 11px;
+      font-weight: 600;
+
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--gold);
+
+      box-shadow:
+        0 0 0 5px rgba(199, 167, 106, 0.08),
+        0 0 16px rgba(199, 167, 106, 0.25);
+    }
+
+    .confirmation-content {
+      padding-top: 30px;
+    }
+
+    .confirmation-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .confirmation-content p + p {
+      margin-top: 14px;
+    }
+
+    /* =========================================
+       NEXT STEPS
+    ========================================= */
+
+    .steps {
+      margin-top: 34px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step {
+      padding: 28px 20px;
+      text-align: center;
+
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: "";
+
+      position: absolute;
+      top: 24px;
+      right: 0;
+
+      width: 1px;
+      height: calc(100% - 48px);
+
+      background: var(--border);
+    }
+
+    .step-number {
+      color: var(--gold);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 28px;
+
+      margin-bottom: 8px;
+    }
+
+    .step h3 {
+      font-family: "Manrope", sans-serif;
+
+      font-size: 12px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.65;
+    }
+
+    /* =========================================
+       ACTIONS
+    ========================================= */
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 14px;
+
+      margin-top: 42px;
+
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      min-height: 54px;
+
+      padding: 0 28px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      border: 1px solid transparent;
+
+      font-family: "Manrope", sans-serif;
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #090909;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.14);
+      color: var(--white);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(199, 167, 106, 0.6);
+      color: var(--gold-light);
+    }
+
+    .btn-arrow {
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    /* =========================================
+       CONTACT STRIP
+    ========================================= */
+
+    .contact-strip {
+      margin-top: 65px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      border: 1px solid var(--border);
+
+      background: rgba(255,255,255,0.015);
+    }
+
+    .contact-item {
+      padding: 25px;
+
+      text-align: center;
+    }
+
+    .contact-item + .contact-item {
+      border-left: 1px solid var(--border);
+    }
+
+    .contact-label {
+      display: block;
+
+      color: var(--muted);
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.20em;
+
+      margin-bottom: 9px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+
+      color: var(--text);
+
+      transition: color 0.25s ease;
+    }
+
+    .contact-value:hover {
+      color: var(--gold-light);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+
+      padding: 28px 6vw;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 25px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.15em;
+    }
+
+    .footer-center {
+      color: var(--gold);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 15px;
+
+      letter-spacing: 0.1em;
+      text-transform: none;
+    }
+
+    .socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .socials a {
+      transition: color 0.25s ease;
+    }
+
+    .socials a:hover {
+      color: var(--gold-light);
+    }
+
+    /* =========================================
+       WHATSAPP
+    ========================================= */
+
+    .whatsapp {
+      position: fixed;
+
+      right: 24px;
+      bottom: 24px;
+
+      width: 54px;
+      height: 54px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #1f9d55;
+
+      color: white;
+
+      box-shadow:
+        0 12px 30px rgba(0,0,0,0.32);
+
+      z-index: 30;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-3px) scale(1.03);
+
+      box-shadow:
+        0 18px 35px rgba(0,0,0,0.40);
+    }
+
+    .whatsapp svg {
+      width: 25px;
+      height: 25px;
+      fill: currentColor;
+    }
+
+    /* =========================================
+       ANIMATIONS
+    ========================================= */
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(0.75);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes checkDraw {
+      from {
+        opacity: 0;
+        transform:
+          rotate(-45deg)
+          translateY(-7px)
+          scale(0.6);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          rotate(-45deg)
+          translateY(-3px)
+          scale(1);
+      }
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 760px) {
+
+      header {
+        height: 76px;
+        padding: 0 20px;
+      }
+
+      .header-label,
+      .header-line {
+        display: none;
+      }
+
+      main {
+        min-height: calc(100vh - 76px);
+
+        padding:
+          125px 18px
+          55px;
+      }
+
+      .logo-text {
+        font-size: 15px;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+      }
+
+      .success-icon {
+        width: 78px;
+        height: 78px;
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        font-size: clamp(
+          46px,
+          15vw,
+          70px
+        );
+      }
+
+      .intro {
+        font-size: 15px;
+      }
+
+      .confirmation-card {
+        padding: 26px 20px;
+        margin-top: 40px;
+      }
+
+      .confirmation-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step:not(:last-child)::after {
+        top: auto;
+        right: 20px;
+        bottom: 0;
+
+        width: calc(100% - 40px);
+        height: 1px;
+      }
+
+      .contact-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-item + .contact-item {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+
+        padding:
+          25px 20px;
+      }
+
+      .socials {
+        justify-content: center;
+      }
+
+      .whatsapp {
+        right: 18px;
+        bottom: 18px;
+
+        width: 50px;
+        height: 50px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="bg-glow glow-one"></div>
+  <div class="bg-glow glow-two"></div>
+  <div class="grain"></div>
+
+
+  <!-- HEADER -->
+  <header>
+
+    <a href="index.html" class="logo" aria-label="VÉRA Home">
+
+      <div class="logo-mark">V</div>
+
+      <div class="logo-text">
+        VÉR<span>A</span>
+      </div>
+
+    </a>
+
+
+    <div class="header-right">
+
+      <div class="header-label">
+        Private Fitness Club
+      </div>
+
+      <div class="header-line"></div>
+
+    </div>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <div class="thank-wrapper">
+
+      <div class="eyebrow">
+        Enquiry Received
+      </div>
+
+
+      <!-- SUCCESS -->
+      <div class="success-icon">
+
+        <div class="check"></div>
+
+      </div>
+
+
+      <!-- TITLE -->
+      <h1>
+        Thank <em>You.</em>
+      </h1>
+
+
+      <!-- INTRO -->
+      <p class="intro">
+        Your enquiry has been successfully received.
+        Thank you for choosing <strong>VÉRA</strong>.
+        Our membership team will review your details
+        and connect with you shortly.
+      </p>
+
+
+      <!-- CONFIRMATION CARD -->
+      <section class="confirmation-card">
+
+        <div class="confirmation-top">
+
+          <div class="confirmation-title">
+            Your Request Is Confirmed
+          </div>
+
+          <div class="confirmation-status">
+
+            <span class="status-dot"></span>
+
+            Received Successfully
+
+          </div>
+
+        </div>
+
+
+        <div class="confirmation-content">
+
+          <p>
+            We have received the information submitted
+            through our private enquiry form.
+          </p>
+
+          <p>
+            A member of the VÉRA team will contact you
+            using the details you provided.
+          </p>
+
+        </div>
+
+
+        <!-- NEXT STEPS -->
+        <div class="steps">
+
+          <div class="step">
+
+            <div class="step-number">
+              01
+            </div>
+
+            <h3>
+              Review
+            </h3>
+
+            <p>
+              Our team reviews your enquiry
+              and requirements.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              02
+            </div>
+
+            <h3>
+              Connect
+            </h3>
+
+            <p>
+              We reach out to arrange the
+              next conversation.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              03
+            </div>
+
+            <h3>
+              Welcome
+            </h3>
+
+            <p>
+              Discover the VÉRA experience
+              in person.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- BUTTONS -->
+      <div class="actions">
+
+        <a
+          href="index.html"
+          class="btn btn-primary"
+        >
+          Back to Home
+
+          <span class="btn-arrow">
+            →
+          </span>
+        </a>
+
+
+        <a
+          href="index.html#programs"
+          class="btn btn-secondary"
+        >
+          Explore Programs
+        </a>
+
+      </div>
+
+
+      <!-- CONTACT -->
+      <section class="contact-strip">
+
+        <div class="contact-item">
+
+          <span class="contact-label">
+            Call
+          </span>
+
+          <a
+            href="tel:+919170834482"
+            class="contact-value"
+          >
+            +91 9170834482
+          </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          <span class="contact-label">
+            Email
+          </span>
+
+          <a
+            href="mailto:hello@verafitness.com"
+            class="contact-value"
+          >
+            hello@verafitness.com
+          </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          <span class="contact-label">
+            Location
+          </span>
+
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=42%20Ocean%20Drive%2C%20Bandra%20West%2C%20Mumbai"
+            target="_blank"
+            rel="noopener"
+            class="contact-value"
+          >
+            Bandra West, Mumbai
+          </a>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div>
+      © <span id="year"></span> VÉRA
+    </div>
+
+
+    <div class="footer-center">
+      Train With Intention.
+    </div>
+
+
+    <div class="socials">
+
+      <a
+        href="#"
+        aria-label="Instagram"
+      >
+        Instagram
+      </a>
+
+      <a
+        href="#"
+        aria-label="Facebook"
+      >
+        Facebook
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- WHATSAPP -->
+  <a
+    href="https://wa.me/919170834482?text=Hello%20V%C3%89RA%2C%20I%20just%20submitted%20an%20enquiry%20and%20would%20like%20to%20know%20more."
+    class="whatsapp"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat with VÉRA on WhatsApp"
+    title="Chat on WhatsApp"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M20.52 3.48A11.82 11.82 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.9c0 2.1.55 4.15 1.6 5.96L.1 24l6.28-1.65a11.88 11.88 0 0 0 5.7 1.46h.01c6.55 0 11.88-5.33 11.88-11.9 0-3.17-1.23-6.15-3.45-8.43ZM12.09 21.8h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.73.98 1-3.64-.23-.37a9.82 9.82 0 0 1-1.51-5.28C2.2 6.45 6.63 2 12.09 2c2.65 0 5.14 1.04 7.02 2.93a9.87 9.87 0 0 1 2.9 7.02c0 5.47-4.43 9.92-9.92 9.92Zm5.45-7.43c-.3-.15-1.77-.88-2.04-.98-.28-.1-.48-.15-.68.15-.2.3-.77.98-.95 1.18-.17.2-.35.23-.65.08-.3-.15-1.25-.46-2.39-1.46-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.24-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.73 2.02-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35Z"
+      />
+    </svg>
+
+  </a>
+
+
+  <script>
+
+    // Dynamic year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
