@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VÉRA — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{--bg:#080808;--card:#121212;--line:rgba(255,255,255,.09);--text:#f4f1e8;--muted:#8f8f8f;--gold:#c7a66a;--gold2:#e1c58a}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% 0,rgba(199,166,106,.08),transparent 34%),var(--bg);color:var(--text);font-family:"DM Sans",sans-serif}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:55px 0 70px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:36px}
+    .brand{font:800 24px Manrope,sans-serif;letter-spacing:5px}.brand small{display:block;font:7px "DM Sans";letter-spacing:4px;color:var(--gold);text-align:center}
+    h1{font:700 48px Manrope,sans-serif;letter-spacing:-2px;margin:0 0 8px}.sub{color:var(--muted);font-size:14px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    button,.search{border:1px solid var(--line);background:#111;color:var(--text);padding:11px 14px;border-radius:10px;cursor:pointer}
+    button:hover{border-color:var(--gold);color:var(--gold2)}
+    .search{width:100%;outline:0}.search:focus{border-color:var(--gold)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0}
+    .stat,.table-wrap{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:14px}
+    .stat{padding:22px}.stat b{display:block;font:800 30px Manrope}.stat span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+    .table-wrap{overflow:auto}.toolbar{padding:16px;border-bottom:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;min-width:780px}th,td{padding:17px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--gold2);background:#111}td{color:#c3c3c3}.email{color:#fff}.yes{color:#a9d58c}.no{color:#888}
+    .empty{padding:40px;text-align:center;color:var(--muted)}
+    .danger{color:#f08e8e}
+    @media(max-width:720px){.top{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:1fr}h1{font-size:39px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <div class="brand">VÉRA<small>LUXURY FITNESS CLUB</small></div>
+        <h1>Members & Leads</h1>
+        <div class="sub">Private admin area · Google sign-ins and marketing consent</div>
+      </div>
+      <div class="actions">
+        <button id="exportBtn">Export CSV</button>
+        <button id="logoutBtn">Log out</button>
+      </div>
+    </div>
+
+    <div id="status" class="sub">Loading...</div>
+
+    <div class="stats">
+      <div class="stat"><b id="totalCount">—</b><span>Total Users</span></div>
+      <div class="stat"><b id="consentCount">—</b><span>Marketing Opt-ins</span></div>
+      <div class="stat"><b id="latestCount">—</b><span>Latest Login</span></div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="toolbar">
+        <input id="search" class="search" type="search" placeholder="Search name or email...">
+      </div>
+      <div id="tableBox"></div>
+    </div>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "https://zajqcosrhvtpixrquobw.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_xo34UR1ccFw8QlB0EmtbLQ_vS_m04JV";
+    const ADMIN_EMAIL = "akash917083@gmail.com";
+
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    let rows = [];
+
+    function csvEscape(value){
+      const text = String(value ?? "");
+      return '"' + text.replaceAll('"','""') + '"';
+    }
+
+    function render(){
+      const q = document.getElementById("search").value.trim().toLowerCase();
+      const filtered = rows.filter(r =>
+        String(r.full_name || "").toLowerCase().includes(q) ||
+        String(r.email || "").toLowerCase().includes(q)
+      );
+
+      const box = document.getElementById("tableBox");
+
+      if(!filtered.length){
+        box.innerHTML = '<div class="empty">No matching users found.</div>';
+        return;
+      }
+
+      box.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Marketing</th>
+              <th>Consent Date</th>
+              <th>Last Login</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filtered.map(r => `
+              <tr>
+                <td>${escapeHtml(r.full_name || "—")}</td>
+                <td class="email">${escapeHtml(r.email || "—")}</td>
+                <td class="${r.marketing_consent ? "yes" : "no"}">${r.marketing_consent ? "Yes" : "No"}</td>
+                <td>${r.consent_at ? new Date(r.consent_at).toLocaleString() : "—"}</td>
+                <td>${r.last_login_at ? new Date(r.last_login_at).toLocaleString() : "—"}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function escapeHtml(value){
+      return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    async function loadAdmin(){
+
+      const { data: { user } } = await client.auth.getUser();
+
+      if(!user){
+        document.getElementById("status").innerHTML =
+          'Not signed in. <a href="index.html" style="color:var(--gold2)">Return to VÉRA</a>';
+        return;
+      }
+
+      if((user.email || "").toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
+        document.getElementById("status").innerHTML =
+          '<span class="danger">Access denied.</span>';
+        return;
+      }
+
+      const { data, error } = await client
+        .from("profiles")
+        .select("*")
+        .order("last_login_at", { ascending: false });
+
+      if(error){
+        console.error(error);
+        document.getElementById("status").textContent =
+          "Could not load users. Check the SQL/RLS setup.";
+        return;
+      }
+
+      rows = data || [];
+
+      document.getElementById("status").textContent =
+        `Signed in as ${user.email}`;
+
+      document.getElementById("totalCount").textContent = rows.length;
+      document.getElementById("consentCount").textContent =
+        rows.filter(r => r.marketing_consent).length;
+      document.getElementById("latestCount").textContent =
+        rows[0]?.last_login_at ? new Date(rows[0].last_login_at).toLocaleDateString() : "—";
+
+      render();
+    }
+
+    document.getElementById("search").addEventListener("input", render);
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await client.auth.signOut();
+      window.location.href = "index.html";
+    });
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const exportRows = rows.filter(r => r.marketing_consent);
+
+      const header = ["Name","Email","Marketing Consent","Consent Date","Last Login"];
+      const lines = [header.map(csvEscape).join(",")];
+
+      exportRows.forEach(r => {
+        lines.push([
+          r.full_name,
+          r.email,
+          "Yes",
+          r.consent_at || "",
+          r.last_login_at || ""
+        ].map(csvEscape).join(","));
+      });
+
+      const blob = new Blob([lines.join("\n")], { type:"text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "vera-marketing-consented-users.csv";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    });
+
+    loadAdmin();
+  </script>
+</body>
+</html>
