@@ -522,6 +522,12 @@
       gap: 18px;
     }
 
+    .trainer-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
     .trainer {
       overflow: hidden;
     }
@@ -1257,61 +1263,97 @@
         grid-template-columns: 1fr;
       }
     }
-  
-/* ===== AUTH / GOOGLE LOGIN ===== */
-body.auth-locked{overflow:hidden}
-.auth-overlay{
-  position:fixed; inset:0; z-index:99999;
-  display:flex; align-items:center; justify-content:center; padding:20px;
-  background:rgba(0,0,0,.72); backdrop-filter:blur(16px);
-}
-.auth-card{
-  width:min(430px,100%); background:linear-gradient(145deg,#171717,#0d0d0d);
-  border:1px solid rgba(199,166,106,.28); padding:40px 32px 30px;
-  border-radius:24px; text-align:center; box-shadow:0 30px 90px rgba(0,0,0,.7);
-  animation:authPop .45s ease both;
-}
-@keyframes authPop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
-.auth-mark{
-  width:64px;height:64px;margin:0 auto 18px;border-radius:18px;
-  background:var(--gold);color:#111;display:grid;place-items:center;
-  font:800 28px Manrope, sans-serif;letter-spacing:2px;
-}
-.auth-card h2{font:800 36px Manrope,sans-serif;letter-spacing:-1.5px;margin-bottom:8px}
-.auth-card h2 em{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold-light);font-weight:500}
-.auth-card p{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:24px}
-.google-login-btn{
-  width:100%;min-height:54px;border:1px solid #dadce0;border-radius:12px;background:#fff;
-  color:#202124;display:flex;align-items:center;justify-content:center;gap:12px;
-  cursor:pointer;font-weight:700;transition:.25s;
-}
-.google-login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,255,255,.1)}
-.google-icon{width:21px;height:21px}
-.auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#666;font-size:12px}
-.auth-divider:before,.auth-divider:after{content:"";height:1px;background:var(--border);flex:1}
-.guest-login-btn{
-  width:100%;border:1px solid rgba(255,255,255,.12);background:transparent;color:#cfcfcf;
-  padding:13px 16px;border-radius:12px;cursor:pointer;font-weight:600;transition:.25s;
-}
-.guest-login-btn:hover{border-color:var(--gold);color:var(--gold-light)}
-.auth-note{margin-top:16px!important;margin-bottom:0!important;font-size:10px!important;color:#666!important}
-.header-auth{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  border:1px solid rgba(199,166,106,.65);color:var(--gold-light);background:rgba(0,0,0,.2);
-  padding:11px 18px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
-  cursor:pointer;transition:.25s;margin-left:8px;
-}
-.header-auth:hover{background:var(--gold);color:#111}
-.header-auth.logged-in{border-color:rgba(255,255,255,.15);color:#ddd;background:#141414}
-@media(max-width:720px){
-  .header-auth{padding:9px 13px;font-size:10px}
-  .auth-card{padding:32px 22px 26px}
-  .auth-card h2{font-size:31px}
-}
 
-</style>
+    /* ===== AUTH / GOOGLE LOGIN ===== */
+    body.auth-locked{overflow:hidden}
+    .auth-overlay{
+      position:fixed; inset:0; z-index:99999;
+      display:flex; align-items:center; justify-content:center; padding:20px;
+      background:rgba(0,0,0,.72); backdrop-filter:blur(16px);
+    }
+    .auth-card{
+      width:min(430px,100%); background:linear-gradient(145deg,#171717,#0d0d0d);
+      border:1px solid rgba(199,166,106,.28); padding:40px 32px 30px;
+      border-radius:24px; text-align:center; box-shadow:0 30px 90px rgba(0,0,0,.7);
+      animation:authPop .45s ease both;
+    }
+    @keyframes authPop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+    .auth-mark{
+      width:64px;height:64px;margin:0 auto 18px;border-radius:18px;
+      background:var(--gold);color:#111;display:grid;place-items:center;
+      font:800 28px Manrope, sans-serif;letter-spacing:2px;
+    }
+    .auth-card h2{font:800 36px Manrope,sans-serif;letter-spacing:-1.5px;margin-bottom:8px}
+    .auth-card h2 em{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold-light);font-weight:500}
+    .auth-card p{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:24px}
+    .google-login-btn{
+      width:100%;min-height:54px;border:1px solid #dadce0;border-radius:12px;background:#fff;
+      color:#202124;display:flex;align-items:center;justify-content:center;gap:12px;
+      cursor:pointer;font-weight:700;transition:.25s;
+    }
+    .google-login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,255,255,.1)}
+    .google-icon{width:21px;height:21px}
+    .auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:#666;font-size:12px}
+    .auth-divider:before,.auth-divider:after{content:"";height:1px;background:var(--border);flex:1}
+    .guest-login-btn{
+      width:100%;border:1px solid rgba(255,255,255,.12);background:transparent;color:#cfcfcf;
+      padding:13px 16px;border-radius:12px;cursor:pointer;font-weight:600;transition:.25s;
+    }
+    .guest-login-btn:hover{border-color:var(--gold);color:var(--gold-light)}
+    .auth-note{margin-top:16px!important;margin-bottom:0!important;font-size:10px!important;color:#666!important}
+    .header-auth{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      border:1px solid rgba(199,166,106,.65);color:var(--gold-light);background:rgba(0,0,0,.2);
+      padding:11px 18px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;
+      cursor:pointer;transition:.25s;margin-left:8px;position:relative;
+    }
+    .header-auth:hover{background:var(--gold);color:#111}
+    .header-auth.logged-in{border-color:rgba(255,255,255,.15);color:#ddd;background:#141414}
+    .logout-menu{
+      position:absolute;
+      top:calc(100% + 10px);
+      right:0;
+      min-width:170px;
+      padding:8px;
+      border:1px solid rgba(199,166,106,.28);
+      background:linear-gradient(145deg,#171717,#0d0d0d);
+      border-radius:14px;
+      box-shadow:0 20px 50px rgba(0,0,0,.55);
+      display:none;
+      z-index:10001;
+    }
+    .logout-menu.show{display:block}
+    .logout-menu button{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:#e6e6e6;
+      padding:11px 13px;
+      text-align:left;
+      border-radius:9px;
+      cursor:pointer;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      transition:.2s;
+    }
+    .logout-menu button:hover{
+      background:rgba(199,166,106,.12);
+      color:var(--gold-light);
+    }
+    @media(max-width:720px){
+      .header-auth{padding:9px 13px;font-size:10px}
+      .auth-card{padding:32px 22px 26px}
+      .auth-card h2{font-size:31px}
+      .logout-menu{
+        right:0;
+        min-width:155px;
+      }
+    }
+  </style>
+
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-
 </head>
 
 <body>
@@ -1336,7 +1378,14 @@ body.auth-locked{overflow:hidden}
       </nav>
 
       <a href="#membership" class="nav-cta">Join Véra</a>
-      <button class="header-auth" id="headerLoginBtn" type="button" aria-haspopup="dialog">Log in</button>
+
+      <div style="position:relative;">
+        <button class="header-auth" id="headerLoginBtn" type="button" aria-haspopup="dialog" aria-expanded="false">Log in</button>
+
+        <div class="logout-menu" id="logoutMenu">
+          <button id="logoutBtn" type="button">Log out</button>
+        </div>
+      </div>
 
       <button class="menu-btn" id="menuBtn" aria-label="Open menu">
         ☰
@@ -2086,7 +2135,14 @@ body.auth-locked{overflow:hidden}
         </div>
 
 
-       <form action="https://formspree.io/f/mdkqjogj" method="POST">
+        <form
+          class="contact-form reveal"
+          id="contactForm"
+          action="https://formspree.io/f/xoevanwz"
+          method="POST"
+        >
+
+          <input type="hidden" name="_subject" value="New VÉRA Website Enquiry">
 
           <div class="form-row">
 
@@ -2370,14 +2426,47 @@ body.auth-locked{overflow:hidden}
     });
 
 
-    /* Contact form */
+    /* Contact form -> Formspree -> custom Thank You page */
 
     const contactForm = document.getElementById("contactForm");
 
     if (contactForm) {
-      contactForm.addEventListener("submit", () => {
+      contactForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
         const button = contactForm.querySelector("button");
-        if (button) { button.textContent = "Sending..."; button.disabled = true; }
+
+        if (button) {
+          button.textContent = "Sending...";
+          button.disabled = true;
+        }
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: "POST",
+            body: new FormData(contactForm),
+            headers: {
+              "Accept": "application/json"
+            }
+          });
+
+          if (response.ok) {
+            window.location.href = "thank.html";
+            return;
+          }
+
+          throw new Error("Form submission failed");
+
+        } catch (error) {
+          console.error(error);
+
+          if (button) {
+            button.textContent = "Try Again →";
+            button.disabled = false;
+          }
+
+          alert("Sorry, your enquiry could not be sent. Please try again.");
+        }
       });
     }
 
@@ -2419,56 +2508,297 @@ body.auth-locked{overflow:hidden}
 
 
     /* ================= AUTH / LOGIN ================= */
+
     (function(){
+
       const overlay = document.getElementById("authOverlay");
       const googleBtn = document.getElementById("googleLoginBtn");
       const guestBtn = document.getElementById("guestLoginBtn");
       const headerLoginBtn = document.getElementById("headerLoginBtn");
-      const GOOGLE_CLIENT_ID = "1005554896687-9n16ig681tlve8rtotct4acgjpl8bbpr.apps.googleusercontent.com";
+      const logoutMenu = document.getElementById("logoutMenu");
+      const logoutBtn = document.getElementById("logoutBtn");
 
-      function openAuth(){ if(!overlay) return; overlay.style.display="flex"; document.body.classList.add("auth-locked"); waitForGoogle(); }
-      function closeAuth(){ if(!overlay) return; overlay.style.display="none"; document.body.classList.remove("auth-locked"); }
-      function guestMode(){ sessionStorage.setItem("veraGuest","1"); sessionStorage.removeItem("veraUser"); closeAuth(); if(headerLoginBtn){headerLoginBtn.textContent="Log in";headerLoginBtn.classList.remove("logged-in");headerLoginBtn.title="Log in";} }
-      function setLoggedIn(user){
-        sessionStorage.removeItem("veraGuest");
-        const name=(user&&(user.name||user.email))?(user.name||user.email):"Account";
-        sessionStorage.setItem("veraUser",JSON.stringify({name:name,email:user&&user.email?user.email:""}));
-        closeAuth();
-        if(headerLoginBtn){headerLoginBtn.textContent="✓ "+name;headerLoginBtn.classList.add("logged-in");headerLoginBtn.title="Click to log out";}
+      const GOOGLE_CLIENT_ID =
+        "1005554896687-9n16ig681tlve8rtotct4acgjpl8bbpr.apps.googleusercontent.com";
+
+
+      function openAuth(){
+
+        if(!overlay) return;
+
+        if(logoutMenu){
+          logoutMenu.classList.remove("show");
+        }
+
+        if(headerLoginBtn){
+          headerLoginBtn.setAttribute("aria-expanded","false");
+        }
+
+        overlay.style.display = "flex";
+        document.body.classList.add("auth-locked");
+
+        waitForGoogle();
       }
+
+
+      function closeAuth(){
+
+        if(!overlay) return;
+
+        overlay.style.display = "none";
+        document.body.classList.remove("auth-locked");
+      }
+
+
+      function guestMode(){
+
+        sessionStorage.setItem("veraGuest","1");
+        sessionStorage.removeItem("veraUser");
+
+        closeAuth();
+
+        if(logoutMenu){
+          logoutMenu.classList.remove("show");
+        }
+
+        if(headerLoginBtn){
+          headerLoginBtn.textContent = "Log in";
+          headerLoginBtn.classList.remove("logged-in");
+          headerLoginBtn.title = "Log in";
+          headerLoginBtn.setAttribute("aria-expanded","false");
+        }
+      }
+
+
+      function setLoggedIn(user){
+
+        sessionStorage.removeItem("veraGuest");
+
+        const name =
+          (user && (user.name || user.email))
+            ? (user.name || user.email)
+            : "Account";
+
+        sessionStorage.setItem(
+          "veraUser",
+          JSON.stringify({
+            name: name,
+            email: user && user.email ? user.email : ""
+          })
+        );
+
+        closeAuth();
+
+        if(logoutMenu){
+          logoutMenu.classList.remove("show");
+        }
+
+        if(headerLoginBtn){
+          headerLoginBtn.textContent = "✓ " + name;
+          headerLoginBtn.classList.add("logged-in");
+          headerLoginBtn.title = "Account options";
+          headerLoginBtn.setAttribute("aria-expanded","false");
+        }
+      }
+
+
       function logout(){
+
         sessionStorage.removeItem("veraUser");
         sessionStorage.setItem("veraGuest","1");
-        try{ if(window.google&&google.accounts&&google.accounts.id) google.accounts.id.disableAutoSelect(); }catch(e){}
-        if(headerLoginBtn){headerLoginBtn.textContent="Log in";headerLoginBtn.classList.remove("logged-in");headerLoginBtn.title="Log in";}
-      }
-      window.handleGoogleCredential=function(response){
-        let user={name:"Account",email:""};
+
         try{
-          const payload=JSON.parse(atob(response.credential.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
-          user={name:payload.name||payload.email||"Account",email:payload.email||""};
+          if(window.google && google.accounts && google.accounts.id){
+            google.accounts.id.disableAutoSelect();
+          }
         }catch(e){}
+
+        if(logoutMenu){
+          logoutMenu.classList.remove("show");
+        }
+
+        if(headerLoginBtn){
+          headerLoginBtn.textContent = "Log in";
+          headerLoginBtn.classList.remove("logged-in");
+          headerLoginBtn.title = "Log in";
+          headerLoginBtn.setAttribute("aria-expanded","false");
+        }
+      }
+
+
+      window.handleGoogleCredential = function(response){
+
+        let user = {
+          name: "Account",
+          email: ""
+        };
+
+        try{
+
+          const payload =
+            JSON.parse(
+              atob(
+                response.credential
+                  .split('.')[1]
+                  .replace(/-/g,'+')
+                  .replace(/_/g,'/')
+              )
+            );
+
+          user = {
+            name: payload.name || payload.email || "Account",
+            email: payload.email || ""
+          };
+
+        }catch(e){}
+
         setLoggedIn(user);
       };
+
+
       function renderGoogleButton(){
-        if(!googleBtn||!window.google||!google.accounts||!google.accounts.id) return false;
-        googleBtn.innerHTML="";
-        google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID,callback:window.handleGoogleCredential,auto_select:false,cancel_on_tap_outside:true,use_fedcm_for_prompt:true});
-        google.accounts.id.renderButton(googleBtn,{theme:"outline",size:"large",width:360,text:"continue_with",shape:"rectangular",logo_alignment:"left"});
+
+        if(
+          !googleBtn ||
+          !window.google ||
+          !google.accounts ||
+          !google.accounts.id
+        ) return false;
+
+        googleBtn.innerHTML = "";
+
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: window.handleGoogleCredential,
+          auto_select: false,
+          cancel_on_tap_outside: true,
+          use_fedcm_for_prompt: true
+        });
+
+        google.accounts.id.renderButton(
+          googleBtn,
+          {
+            theme: "outline",
+            size: "large",
+            width: 360,
+            text: "continue_with",
+            shape: "rectangular",
+            logo_alignment: "left"
+          }
+        );
+
         return true;
       }
+
+
       function waitForGoogle(){
+
         if(renderGoogleButton()) return;
-        let tries=0; const timer=setInterval(()=>{tries++; if(renderGoogleButton()||tries>=40) clearInterval(timer);},250);
+
+        let tries = 0;
+
+        const timer = setInterval(() => {
+
+          tries++;
+
+          if(renderGoogleButton() || tries >= 40){
+            clearInterval(timer);
+          }
+
+        }, 250);
+
       }
-      const saved=sessionStorage.getItem("veraUser");
-      if(saved){ try{ setLoggedIn(JSON.parse(saved)); }catch(e){sessionStorage.removeItem("veraUser");openAuth();} }
-      else if(sessionStorage.getItem("veraGuest")==="1") closeAuth();
-      else openAuth();
-      if(guestBtn) guestBtn.addEventListener("click",guestMode);
-      if(headerLoginBtn) headerLoginBtn.addEventListener("click",()=>{ if(sessionStorage.getItem("veraUser")) logout(); else openAuth(); });
-      window.addEventListener("load",waitForGoogle);
+
+
+      function toggleAccountMenu(){
+
+        if(!sessionStorage.getItem("veraUser")) return;
+
+        if(!logoutMenu || !headerLoginBtn) return;
+
+        const isOpen = logoutMenu.classList.toggle("show");
+
+        headerLoginBtn.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+      }
+
+
+      const saved = sessionStorage.getItem("veraUser");
+
+      if(saved){
+
+        try{
+          setLoggedIn(JSON.parse(saved));
+        }catch(e){
+
+          sessionStorage.removeItem("veraUser");
+          openAuth();
+
+        }
+
+      }else if(sessionStorage.getItem("veraGuest")==="1"){
+
+        closeAuth();
+
+      }else{
+
+        openAuth();
+
+      }
+
+
+      if(guestBtn){
+        guestBtn.addEventListener("click", guestMode);
+      }
+
+
+      if(headerLoginBtn){
+
+        headerLoginBtn.addEventListener("click", () => {
+
+          if(sessionStorage.getItem("veraUser")){
+
+            toggleAccountMenu();
+
+          }else{
+
+            openAuth();
+
+          }
+
+        });
+
+      }
+
+
+      if(logoutBtn){
+        logoutBtn.addEventListener("click", logout);
+      }
+
+
+      document.addEventListener("click", (event) => {
+
+        if(
+          logoutMenu &&
+          headerLoginBtn &&
+          !headerLoginBtn.contains(event.target) &&
+          !logoutMenu.contains(event.target)
+        ){
+
+          logoutMenu.classList.remove("show");
+          headerLoginBtn.setAttribute("aria-expanded","false");
+
+        }
+
+      });
+
+
+      window.addEventListener("load", waitForGoogle);
+
     })();
+
   </script>
 
 </body>
