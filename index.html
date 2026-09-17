@@ -1020,7 +1020,14 @@
       gap: 9px;
       margin-top: 20px;
     }
+.socials a i {
+  font-size: 14px;
+  line-height: 1;
+}
 
+.socials a:hover i {
+  transform: scale(1.1);
+}
     .socials a {
       width: 35px;
       height: 35px;
@@ -1048,26 +1055,35 @@
 
     /* ================= WHATSAPP ================= */
 
-    .whatsapp {
-      position: fixed;
-      z-index: 900;
-      right: 24px;
-      bottom: 24px;
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #25D366;
-      color: white;
-      font-size: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
-      transition: .3s;
-    }
+ .whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366; /* Official WhatsApp Green */
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .whatsapp:hover {
-      transform: scale(1.08);
-    }
+.whatsapp-icon {
+  width: 35px;
+  height: 35px;
+  fill: #FFFFFF;
+}
+
+/* Hover Effect */
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 4px 15px rgba(37, 211, 102, 0.5);
+}
 
     /* ================= REVEAL ================= */
 
@@ -1301,12 +1317,6 @@
     }
     .guest-login-btn:hover{border-color:var(--gold);color:var(--gold-light)}
     .auth-note{margin-top:16px!important;margin-bottom:0!important;font-size:10px!important;color:#666!important}
-    .admin-trigger{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(199,166,106,.45);color:var(--gold-light);background:transparent;padding:10px 14px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;cursor:pointer;transition:.25s;margin-left:8px;white-space:nowrap}
-    .admin-trigger:hover{background:rgba(199,166,106,.12);border-color:var(--gold)}
-    .admin-modal-btn{width:100%;margin-top:10px;border:1px solid rgba(199,166,106,.32);background:rgba(199,166,106,.05);color:var(--gold-light);padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;transition:.25s;text-transform:uppercase;font-size:10px;letter-spacing:1px}
-    .admin-modal-btn:hover{background:rgba(199,166,106,.12);border-color:var(--gold)}
-    .admin-field{text-align:left;margin-bottom:14px}.admin-field label{display:block;color:#999;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}.admin-field input{width:100%;border:1px solid var(--border);background:#0d0d0d;color:white;padding:14px 15px;outline:none;border-radius:10px}.admin-field input:focus{border-color:var(--gold)}
-    .admin-error{min-height:20px!important;margin:2px 0 10px!important;color:#e58c8c!important;font-size:12px!important}
     .header-auth{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       border:1px solid rgba(199,166,106,.65);color:var(--gold-light);background:rgba(0,0,0,.2);
@@ -1315,18 +1325,6 @@
     }
     .header-auth:hover{background:var(--gold);color:#111}
     .header-auth.logged-in{border-color:rgba(255,255,255,.15);color:#ddd;background:#141414}
-    .consent-card p{margin-bottom:18px}
-    .consent-check{
-      display:flex;align-items:flex-start;gap:12px;
-      text-align:left;color:#cfcfcf;font-size:13px;line-height:1.6;
-      padding:14px;border:1px solid var(--border);background:rgba(255,255,255,.025);
-      border-radius:12px;cursor:pointer;
-    }
-    .consent-check input{
-      width:18px;height:18px;margin-top:2px;accent-color:var(--gold);flex:0 0 auto;
-    }
-    .consent-overlay{z-index:100000}
-
     .logout-menu{
       position:absolute;
       top:calc(100% + 10px);
@@ -1361,7 +1359,6 @@
       color:var(--gold-light);
     }
     @media(max-width:720px){
-      .admin-trigger{padding:9px 11px;font-size:9px}
       .header-auth{padding:9px 13px;font-size:10px}
       .auth-card{padding:32px 22px 26px}
       .auth-card h2{font-size:31px}
@@ -1371,8 +1368,11 @@
       }
     }
   </style>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -1397,8 +1397,6 @@
       </nav>
 
       <a href="#membership" class="nav-cta">Join PUMPING IRON</a>
-
-      <button class="admin-trigger" id="headerAdminBtn" type="button">Admin Login</button>
 
       <div style="position:relative;">
         <button class="header-auth" id="headerLoginBtn" type="button" aria-haspopup="dialog" aria-expanded="false">Log in</button>
@@ -1425,55 +1423,12 @@
       <div class="auth-mark">V</div>
       <h2 id="authTitle">Welcome to <em>PUMPING IRON</em></h2>
       <p>Sign in to continue your premium fitness experience.</p>
-
-      <button class="google-login-btn" id="googleLoginBtn" type="button" aria-label="Continue with Google">
-        <span style="font-size:21px;font-weight:800;">G</span>
-        <span>Continue with Google</span>
-      </button>
+      <div class="google-login-btn" id="googleLoginBtn" aria-label="Continue with Google"></div>
 
       <div class="auth-divider"><span>or</span></div>
 
       <button class="guest-login-btn" id="guestLoginBtn" type="button">Continue as Guest</button>
-      <button class="admin-modal-btn" id="adminModalBtn" type="button">Admin Login</button>
       <p class="auth-note">You can sign in anytime later from the top-right Login button.</p>
-    </div>
-  </div>
-
-  <!-- ================= ADMIN LOGIN ================= -->
-  <div class="auth-overlay" id="adminOverlay" role="dialog" aria-modal="true" aria-labelledby="adminTitle" style="display:none;">
-    <div class="auth-card">
-      <div class="auth-mark">V</div>
-      <h2 id="adminTitle">PUMPING IRON <em>Admin</em></h2>
-      <p>Private access for the PUMPING IRON administrator.</p>
-      <form id="adminLoginForm" novalidate>
-        <div class="admin-field"><label for="adminEmail">Admin Email</label><input id="adminEmail" type="email" placeholder="xyz@gmail.com" autocomplete="username" required></div>
-        <div class="admin-field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" placeholder="Enter your admin password" autocomplete="current-password" required></div>
-        <p class="admin-error" id="adminError" aria-live="polite"></p>
-        <button class="btn" id="adminSubmitBtn" type="submit" style="width:100%;">Login to Dashboard →</button>
-      </form>
-      <button class="guest-login-btn" id="adminBackBtn" type="button" style="margin-top:10px;">Back to Login</button>
-    </div>
-  </div>
-
-  <!-- ================= MARKETING CONSENT ================= -->
-  <div class="auth-overlay consent-overlay" id="consentOverlay" role="dialog" aria-modal="true" aria-labelledby="consentTitle" style="display:none;">
-    <div class="auth-card consent-card">
-      <div class="auth-mark">V</div>
-      <h2 id="consentTitle">Stay in the <em>loop.</em></h2>
-      <p>Choose whether PUMPING IRON may send you membership updates, special offers and future promotions by email.</p>
-
-      <label class="consent-check">
-        <input type="checkbox" id="marketingConsent">
-        <span>Yes, send me PUMPING IRON offers, updates and future promotions by email.</span>
-      </label>
-
-      <button class="btn" id="saveConsentBtn" type="button" style="width:100%;margin-top:18px;">
-        Save Preference
-      </button>
-
-      <button class="guest-login-btn" id="skipConsentBtn" type="button" style="margin-top:10px;">
-        Continue Without Offers
-      </button>
     </div>
   </div>
 
@@ -2312,12 +2267,41 @@
             excellence is built — one session at a time.
           </p>
 
-          <div class="socials">
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Youtube">YT</a>
-            <a href="#" aria-label="LinkedIn">IN</a>
-          </div>
+        <div class="socials">
+
+  <a
+    href="#"
+    aria-label="Instagram"
+    title="Instagram"
+  >
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+
+  <a
+    href="#"
+    aria-label="Facebook"
+    title="Facebook"
+  >
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+
+  <a
+    href="#"
+    aria-label="YouTube"
+    title="YouTube"
+  >
+    <i class="fa-brands fa-youtube"></i>
+  </a>
+
+  <a
+    href="#"
+    aria-label="LinkedIn"
+    title="LinkedIn"
+  >
+    <i class="fa-brands fa-linkedin-in"></i>
+  </a>
+
+</div>
 
         </div>
 
@@ -2348,7 +2332,7 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="tel:+919876543210">+91 98765 43210</a></li>
-            <li><a href="mailto:hello@PUMPING IRONfitness.com">hello@PUMPING IRONfitness.com</a></li>
+            <li><a href="mailto:hello@verafitness.com">hello@verafitness.com</a></li>
             <li><a href="#contact">Bandra West, Mumbai</a></li>
           </ul>
         </div>
@@ -2368,15 +2352,24 @@
 
   <!-- ================= WHATSAPP ================= -->
 
-  <a
-    class="whatsapp"
-    href="https://wa.me/919876543210?text=Hi%20V%C3%89RA%2C%20I%27d%20like%20to%20know%20more%20about%20membership."
-    target="_blank"
-    aria-label="Chat on WhatsApp"
+ <a
+  href="https://wa.me/919170834482?text=Hello%20V%C3%89RA%2C%20I%20would%20like%20to%20know%20more%20about%20your%20gym%20membership%20and%20services."
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat on WhatsApp"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    class="whatsapp-icon"
   >
-    ☎
-  </a>
-
+    <path
+      fill="currentColor"
+      d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 222.1-99.6 222.1-222 0-59.3-23.1-115-65.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.5 0 101.8-82.7 184.6-184.5 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+    />
+  </svg>
+</a>
 
   <!-- ================= JAVASCRIPT ================= -->
 
@@ -2515,7 +2508,7 @@
           });
 
           if (response.ok) {
-            window.location.href = "thank-you.html";
+            window.location.href = "thank.html";
             return;
           }
 
@@ -2571,46 +2564,20 @@
     sections.forEach(section => navObserver.observe(section));
 
 
-    /* ================= AUTH / SUPABASE GOOGLE LOGIN ================= */
+    /* ================= AUTH / LOGIN ================= */
 
     (function(){
-
-      /*
-        IMPORTANT:
-        Replace these two public Supabase values with your project values.
-        Never put a Supabase secret/service-role key in this file.
-      */
-      const SUPABASE_URL = "https://zajqcosrhvtpixrquobw.supabase.co";
-      const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_xo34UR1ccFw8QlB0EmtbLQ_vS_m04JV";
-
-      const ADMIN_EMAIL = "akash917083@gmail.com";
 
       const overlay = document.getElementById("authOverlay");
       const googleBtn = document.getElementById("googleLoginBtn");
       const guestBtn = document.getElementById("guestLoginBtn");
-      const adminModalBtn = document.getElementById("adminModalBtn");
-      const headerAdminBtn = document.getElementById("headerAdminBtn");
       const headerLoginBtn = document.getElementById("headerLoginBtn");
       const logoutMenu = document.getElementById("logoutMenu");
       const logoutBtn = document.getElementById("logoutBtn");
 
-      const consentOverlay = document.getElementById("consentOverlay");
-      const marketingConsent = document.getElementById("marketingConsent");
-      const saveConsentBtn = document.getElementById("saveConsentBtn");
-      const skipConsentBtn = document.getElementById("skipConsentBtn");
+      const GOOGLE_CLIENT_ID =
+        "1005554896687-9n16ig681tlve8rtotct4acgjpl8bbpr.apps.googleusercontent.com";
 
-      let supabase = null;
-
-      if (
-        SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL" &&
-        SUPABASE_PUBLISHABLE_KEY !== "YOUR_SUPABASE_PUBLISHABLE_KEY" &&
-        window.supabase
-      ) {
-        supabase = window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_PUBLISHABLE_KEY
-        );
-      }
 
       function openAuth(){
 
@@ -2620,9 +2587,16 @@
           logoutMenu.classList.remove("show");
         }
 
+        if(headerLoginBtn){
+          headerLoginBtn.setAttribute("aria-expanded","false");
+        }
+
         overlay.style.display = "flex";
         document.body.classList.add("auth-locked");
+
+        waitForGoogle();
       }
+
 
       function closeAuth(){
 
@@ -2632,65 +2606,13 @@
         document.body.classList.remove("auth-locked");
       }
 
-      function openAdminLogin(){
-        if(overlay) overlay.style.display="none";
-        if(adminOverlay) adminOverlay.style.display="flex";
-        document.body.classList.add("auth-locked");
-        if(adminError) adminError.textContent="";
-      }
-
-      function closeAdminLogin(){
-        if(adminOverlay) adminOverlay.style.display="none";
-        document.body.classList.remove("auth-locked");
-      }
-
-      async function adminLogin(){
-        if(!supabase){ if(adminError) adminError.textContent="Supabase is not configured."; return; }
-        const email=(adminEmailInput?.value||"").trim().toLowerCase();
-        const password=adminPasswordInput?.value||"";
-        if(email!==ADMIN_EMAIL.toLowerCase()){ if(adminError) adminError.textContent="Use the authorized admin email."; return; }
-        if(!password){ if(adminError) adminError.textContent="Enter your admin password."; return; }
-        if(adminSubmitBtn){adminSubmitBtn.disabled=true;adminSubmitBtn.textContent="Signing in...";}
-        const {data,error}=await supabase.auth.signInWithPassword({email,password});
-        if(error||!data?.user){
-          if(adminError) adminError.textContent=error?.message||"Admin login failed.";
-          if(adminSubmitBtn){adminSubmitBtn.disabled=false;adminSubmitBtn.textContent="Login to Dashboard →";}
-          return;
-        }
-        if((data.user.email||"").toLowerCase()!==ADMIN_EMAIL.toLowerCase()){
-          await supabase.auth.signOut();
-          if(adminError) adminError.textContent="This account is not authorized for admin access.";
-          if(adminSubmitBtn){adminSubmitBtn.disabled=false;adminSubmitBtn.textContent="Login to Dashboard →";}
-          return;
-        }
-        closeAdminLogin();
-        window.location.href="admin.html";
-      }
-
-      function openConsent(){
-
-        if(!consentOverlay) return;
-
-        marketingConsent.checked = false;
-        consentOverlay.style.display = "flex";
-        document.body.classList.add("auth-locked");
-      }
-
-      function closeConsent(){
-
-        if(!consentOverlay) return;
-
-        consentOverlay.style.display = "none";
-        document.body.classList.remove("auth-locked");
-      }
 
       function guestMode(){
 
-        sessionStorage.setItem("PUMPING IRONGuest","1");
-        sessionStorage.removeItem("PUMPING IRONUser");
+        sessionStorage.setItem("veraGuest","1");
+        sessionStorage.removeItem("veraUser");
 
         closeAuth();
-        closeConsent();
 
         if(logoutMenu){
           logoutMenu.classList.remove("show");
@@ -2704,22 +2626,29 @@
         }
       }
 
-      function setHeaderUser(user){
+
+      function setLoggedIn(user){
+
+        sessionStorage.removeItem("veraGuest");
 
         const name =
-          (user && (user.user_metadata?.full_name || user.user_metadata?.name || user.email))
-            ? (user.user_metadata?.full_name || user.user_metadata?.name || user.email)
+          (user && (user.name || user.email))
+            ? (user.name || user.email)
             : "Account";
 
         sessionStorage.setItem(
-          "PUMPING IRONUser",
+          "veraUser",
           JSON.stringify({
             name: name,
-            email: user?.email || ""
+            email: user && user.email ? user.email : ""
           })
         );
 
-        sessionStorage.removeItem("PUMPING IRONGuest");
+        closeAuth();
+
+        if(logoutMenu){
+          logoutMenu.classList.remove("show");
+        }
 
         if(headerLoginBtn){
           headerLoginBtn.textContent = "✓ " + name;
@@ -2729,132 +2658,17 @@
         }
       }
 
-      async function saveProfile(user, consentValue){
 
-        if(!supabase || !user) return null;
+      function logout(){
 
-        const now = new Date().toISOString();
+        sessionStorage.removeItem("veraUser");
+        sessionStorage.setItem("veraGuest","1");
 
-        const row = {
-          id: user.id,
-          full_name:
-            user.user_metadata?.full_name ||
-            user.user_metadata?.name ||
-            user.email?.split("@")[0] ||
-            "Account",
-          email: user.email || "",
-          marketing_consent: !!consentValue,
-          consent_at: consentValue ? now : null,
-          last_login_at: now,
-          updated_at: now
-        };
-
-        const { data, error } = await supabase
-          .from("profiles")
-          .upsert(row, { onConflict: "id" })
-          .select()
-          .single();
-
-        if(error){
-          console.error("Profile save error:", error);
-          return null;
-        }
-
-        return data;
-      }
-
-      async function continueAfterLogin(session){
-
-        if(!session?.user) return;
-
-        setHeaderUser(session.user);
-        closeAuth();
-
-        if(!supabase){
-          alert("Supabase configuration is missing. Add the project URL and publishable key.");
-          return;
-        }
-
-        const { data: existing } = await supabase
-          .from("profiles")
-          .select("marketing_consent")
-          .eq("id", session.user.id)
-          .maybeSingle();
-
-        if(!existing){
-          openConsent();
-        }
-      }
-
-      async function startGoogleLogin(){
-
-        if(!supabase){
-          alert("Supabase is not configured yet. Add your Supabase Project URL and Publishable Key in the code.");
-          return;
-        }
-
-        googleBtn.disabled = true;
-        googleBtn.style.opacity = ".65";
-
-        const { error } = await supabase.auth.signInWithOAuth({
-          provider: "google",
-          options: {
-            redirectTo: window.location.origin + window.location.pathname
+        try{
+          if(window.google && google.accounts && google.accounts.id){
+            google.accounts.id.disableAutoSelect();
           }
-        });
-
-        if(error){
-          console.error(error);
-          alert("Google login could not be started. Please try again.");
-          googleBtn.disabled = false;
-          googleBtn.style.opacity = "1";
-        }
-      }
-
-      async function saveConsent(value){
-
-        if(!supabase){
-          closeConsent();
-          return;
-        }
-
-        const { data: { user } } = await supabase.auth.getUser();
-
-        if(!user){
-          closeConsent();
-          return;
-        }
-
-        saveConsentBtn.disabled = true;
-        saveConsentBtn.textContent = "Saving...";
-
-        const result = await saveProfile(user, value);
-
-        if(!result && value){
-          alert("Your preference could not be saved. Please try again.");
-          saveConsentBtn.disabled = false;
-          saveConsentBtn.textContent = "Save Preference";
-          return;
-        }
-
-        saveConsentBtn.disabled = false;
-        saveConsentBtn.textContent = "Save Preference";
-
-        closeConsent();
-      }
-
-      async function logout(){
-
-        if(supabase){
-          const { error } = await supabase.auth.signOut();
-
-          if(error){
-            console.error(error);
-          }
-        }
-
-        sessionStorage.removeItem("PUMPING IRONUser");
-        sessionStorage.setItem("PUMPING IRONGuest","1");
+        }catch(e){}
 
         if(logoutMenu){
           logoutMenu.classList.remove("show");
@@ -2868,9 +2682,94 @@
         }
       }
 
+
+      window.handleGoogleCredential = function(response){
+
+        let user = {
+          name: "Account",
+          email: ""
+        };
+
+        try{
+
+          const payload =
+            JSON.parse(
+              atob(
+                response.credential
+                  .split('.')[1]
+                  .replace(/-/g,'+')
+                  .replace(/_/g,'/')
+              )
+            );
+
+          user = {
+            name: payload.name || payload.email || "Account",
+            email: payload.email || ""
+          };
+
+        }catch(e){}
+
+        setLoggedIn(user);
+      };
+
+
+      function renderGoogleButton(){
+
+        if(
+          !googleBtn ||
+          !window.google ||
+          !google.accounts ||
+          !google.accounts.id
+        ) return false;
+
+        googleBtn.innerHTML = "";
+
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: window.handleGoogleCredential,
+          auto_select: false,
+          cancel_on_tap_outside: true,
+          use_fedcm_for_prompt: true
+        });
+
+        google.accounts.id.renderButton(
+          googleBtn,
+          {
+            theme: "outline",
+            size: "large",
+            width: 360,
+            text: "continue_with",
+            shape: "rectangular",
+            logo_alignment: "left"
+          }
+        );
+
+        return true;
+      }
+
+
+      function waitForGoogle(){
+
+        if(renderGoogleButton()) return;
+
+        let tries = 0;
+
+        const timer = setInterval(() => {
+
+          tries++;
+
+          if(renderGoogleButton() || tries >= 40){
+            clearInterval(timer);
+          }
+
+        }, 250);
+
+      }
+
+
       function toggleAccountMenu(){
 
-        if(!sessionStorage.getItem("PUMPING IRONUser")) return;
+        if(!sessionStorage.getItem("veraUser")) return;
 
         if(!logoutMenu || !headerLoginBtn) return;
 
@@ -2882,78 +2781,59 @@
         );
       }
 
-      async function initSupabaseAuth(){
 
-        if(!supabase){
+      const saved = sessionStorage.getItem("veraUser");
+
+      if(saved){
+
+        try{
+          setLoggedIn(JSON.parse(saved));
+        }catch(e){
+
+          sessionStorage.removeItem("veraUser");
           openAuth();
-          return;
+
         }
 
-        const { data: { session } } = await supabase.auth.getSession();
+      }else if(sessionStorage.getItem("veraGuest")==="1"){
 
-        if(session?.user){
-          await continueAfterLogin(session);
-        }else if(sessionStorage.getItem("PUMPING IRONGuest") === "1"){
-          closeAuth();
-        }else{
-          openAuth();
-        }
+        closeAuth();
 
-        supabase.auth.onAuthStateChange(async (event, session) => {
+      }else{
 
-          if(event === "SIGNED_IN" && session?.user){
-            setTimeout(() => continueAfterLogin(session), 0);
-          }
+        openAuth();
 
-          if(event === "SIGNED_OUT"){
-            guestMode();
-          }
-
-        });
       }
 
-      if(googleBtn){
-        googleBtn.addEventListener("click", startGoogleLogin);
-      }
 
       if(guestBtn){
         guestBtn.addEventListener("click", guestMode);
       }
 
+
       if(headerLoginBtn){
 
         headerLoginBtn.addEventListener("click", () => {
 
-          if(sessionStorage.getItem("PUMPING IRONUser")){
+          if(sessionStorage.getItem("veraUser")){
+
             toggleAccountMenu();
+
           }else{
+
             openAuth();
+
           }
 
         });
 
       }
 
+
       if(logoutBtn){
         logoutBtn.addEventListener("click", logout);
       }
 
-      if(adminModalBtn){ adminModalBtn.addEventListener("click", openAdminLogin); }
-      if(headerAdminBtn){ headerAdminBtn.addEventListener("click", openAdminLogin); }
-      if(adminBackBtn){ adminBackBtn.addEventListener("click", () => { closeAdminLogin(); openAuth(); }); }
-      if(adminLoginForm){ adminLoginForm.addEventListener("submit", e => { e.preventDefault(); adminLogin(); }); }
-
-      if(saveConsentBtn){
-        saveConsentBtn.addEventListener("click", () => {
-          saveConsent(marketingConsent.checked);
-        });
-      }
-
-      if(skipConsentBtn){
-        skipConsentBtn.addEventListener("click", () => {
-          saveConsent(false);
-        });
-      }
 
       document.addEventListener("click", (event) => {
 
@@ -2965,23 +2845,14 @@
         ){
 
           logoutMenu.classList.remove("show");
-
-          if(headerLoginBtn){
-            headerLoginBtn.setAttribute("aria-expanded","false");
-          }
+          headerLoginBtn.setAttribute("aria-expanded","false");
 
         }
 
       });
 
-      /*
-        Admin email is stored here only as the intended admin identity.
-        The actual admin read permissions must be enforced in Supabase RLS,
-        using the SQL file supplied with this project.
-      */
-      window.PUMPING IRON_ADMIN_EMAIL = ADMIN_EMAIL;
 
-      initSupabaseAuth();
+      window.addEventListener("load", waitForGoogle);
 
     })();
 
